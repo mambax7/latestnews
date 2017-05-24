@@ -43,7 +43,7 @@ function block_latestnews_show($options)
         include_once XOOPS_ROOT_PATH . '/modules/news/language/english/main.php';
     }
 
-    $myts   =& MyTextSanitizer::getInstance();
+    $myts   = MyTextSanitizer::getInstance();
     $sfiles = new sFiles();
 
     $dateformat = news_getmoduleoption('dateformat');

@@ -83,7 +83,7 @@ if (isset($_POST['previewblock'])) {
     $block['name'] = $myblock->getVar('name');
   }
 
-  $myts =& MyTextSanitizer::getInstance();
+  $myts = MyTextSanitizer::getInstance();
   $myblock->setVar('title', $myts->stripSlashesGPC($btitle));
   $myblock->setVar('content', $myts->stripSlashesGPC($bcontent));
 
@@ -323,7 +323,7 @@ if ($op == 'clone_ok') {
     }
     $cblock->setNew();
 
-    $myts =& MyTextSanitizer::getInstance();
+    $myts = MyTextSanitizer::getInstance();
     $cblock->setVar('side', $_POST['bside']);
     $cblock->setVar('weight', $_POST['bweight']);
     $cblock->setVar('visible', $_POST['bvisible']);

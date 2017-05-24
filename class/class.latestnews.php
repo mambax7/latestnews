@@ -25,7 +25,7 @@ class LatestNewsStory extends NewsStory
     static function getAllPublished($limit=0, $selected_stories=true, $start=0, $checkRight=false, $topic=0, $ihome=0, $asobject=true, $order = 'published', $topic_frontpage=false)
     {
         $db =& XoopsDatabaseFactory::getDatabaseConnection();
-        $myts =& MyTextSanitizer::getInstance();
+        $myts = MyTextSanitizer::getInstance();
 
         $ret = array();
         $sql = 'SELECT s.*, t.* FROM '.$db->prefix('mod_news_stories').' s, '. $db->prefix('mod_news_topics').' t WHERE (s.published > 0 AND s.published <= '.time().') AND (s.expired = 0 OR s.expired > '.time().') AND (s.topicid=t.topic_id) ';
@@ -95,7 +95,7 @@ class LatestNewsStory extends NewsStory
     {
         include_once XOOPS_ROOT_PATH.'/modules/news/include/functions.php';
         global $xoopsUser, $xoopsConfig, $xoopsModuleConfig;
-        $myts =& MyTextSanitizer::getInstance();
+        $myts = MyTextSanitizer::getInstance();
         $infotips = news_getmoduleoption('infotips');
         $story = array();
         $story['id'] = $this->storyid();
