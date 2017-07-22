@@ -1,8 +1,8 @@
 <?php
 /**
- * @Language: Castellano
+ * @Language   : Castellano
  * @Translators: Cerbero /
  */
 
-define ("_MI_LATESTNEWS_BLOCK","Bloque Últimas Notí­cias");
-define ("_MI_LATESTNEWS_INF","Bloque Últimas Notícias");
+define('_MI_LATESTNEWS_BLOCK', 'Bloque Ãšltimas NotÃ­Â­cias');
+define('_MI_LATESTNEWS_INF', 'Bloque Ãšltimas NotÃ­cias');

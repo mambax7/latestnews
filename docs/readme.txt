@@ -16,13 +16,13 @@ Features:
 9. Can scrolling the articles.
 
 Installation:
-- Copy the latestnews folder into your modules folder 
+- Copy the latestnews folder into your modules folder
 - Activate latestnews in module administration
 - Go to block administration and activate Latest News Block.
 - You can customize the block by clicking on "Edit" next to the block in the block administration.
 
-Thanks To: 
-Onaser, Hani salam, SaudiGear, Bandit-x, Trabis, Hervé, Taimor.aziz, Veaglarwen, Mariane Antoun
+Thanks To:
+Onaser, Hani salam, SaudiGear, Bandit-x, Trabis, HervÃ©, Taimor.aziz, Veaglarwen, Mariane Antoun
 
 
 

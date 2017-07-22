@@ -20,9 +20,9 @@ define('_AM_TOPPAGE', '_AM_TOPPAGE');
 define('_AM_ALLPAGES', '_AM_ALLPAGES');
 
 //permissions.php
-define("_AM_LATESTNEWS_PERMISSIONS", "Permissions");
-define("_AM_LATESTNEWS_PERMISSIONS_DSC", "Select groups that should have:");
-define("_AM_LATESTNEWS_ACTIVERIGHTS", "Module access rights");
-define("_AM_LATESTNEWS_ACCESSRIGHTS", "Module administration rights");
+define('_AM_LATESTNEWS_PERMISSIONS', 'Permissions');
+define('_AM_LATESTNEWS_PERMISSIONS_DSC', 'Select groups that should have:');
+define('_AM_LATESTNEWS_ACTIVERIGHTS', 'Module access rights');
+define('_AM_LATESTNEWS_ACCESSRIGHTS', 'Module administration rights');
 
-define("_AM_LATESTNEWS_UPDATE_SUCCESS", "Updated successfully");
+define('_AM_LATESTNEWS_UPDATE_SUCCESS', 'Updated successfully');

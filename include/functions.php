@@ -12,11 +12,12 @@
 // # Free Software Foundation (http://www.gnu.org/)                     #
 // ######################################################################
 
-function latestnews_checkmodule($checkmodule='news')
+function latestnews_checkmodule($checkmodule = 'news')
 {
     $retval = false;
-    $module_handler =& xoops_gethandler('module');
-    $module =& $module_handler->getByDirname($checkmodule);
+    /** @var XoopsModuleHandler $moduleHandler */
+    $moduleHandler = xoops_getHandler('module');
+    $module        = $moduleHandler->getByDirname($checkmodule);
 
     if (is_object($module) && $module->getVar('isactive')) {
         $retval = true;
@@ -27,32 +28,32 @@ function latestnews_checkmodule($checkmodule='news')
 
 function latestnews_mk_chkbox($options, $number)
 {
-    $chk   = "";
+    $chk = '';
     if ($options[$number] == 1) {
-        $chk = " checked='checked'";
+        $chk = ' checked';
     }
-    $chkbox = "<input type='radio' name='options[$number]' value='1'".$chk." />&nbsp;"._YES."&nbsp;&nbsp;";
-    $chk   = "";
+    $chkbox = "<input type='radio' name='options[$number]' value='1'" . $chk . '>&nbsp;' . _YES . '&nbsp;&nbsp;';
+    $chk    = '';
     if ($options[$number] == 0) {
-        $chk = " checked='checked'";
+        $chk = ' checked';
     }
-    $chkbox .= "<input type='radio' name='options[$number]' value='0'".$chk." />&nbsp;"._NO."</td></tr>";
+    $chkbox .= "<input type='radio' name='options[$number]' value='0'" . $chk . '>&nbsp;' . _NO . '</td></tr>';
 
     return $chkbox;
 }
 
 function latestnews_mk_select($options, $number)
 {
-    $slc   = "";
+    $slc = '';
     if ($options[$number] == 1) {
-        $slc = " checked='checked'";
+        $slc = ' checked';
     }
-    $select = "<input type='radio' name='options[$number]' value='1'".$slc." />&nbsp;"._LEFT."&nbsp;&nbsp;";
-    $slc   = "";
+    $select = "<input type='radio' name='options[$number]' value='1'" . $slc . '>&nbsp;' . _LEFT . '&nbsp;&nbsp;';
+    $slc    = '';
     if ($options[$number] == 0) {
-        $slc = " checked='checked'";
+        $slc = ' checked';
     }
-    $select .= "<input type='radio' name='options[$number]' value='0'".$slc." />&nbsp;"._RIGHT."</td></tr>";
+    $select .= "<input type='radio' name='options[$number]' value='0'" . $slc . '>&nbsp;' . _RIGHT . '</td></tr>';
 
     return $select;
 }

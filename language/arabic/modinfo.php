@@ -1,4 +1,4 @@
 <?php
-define ("_MI_LATESTNEWS_BLOCK", "ÂÎÑ ÇáÃÎÈÇÑ");
-define ("_MI_LATESTNEWS_BLOCKS_DESC", "Èáæß áÚÑÖ ÂÎÑ ÇáÃÎÈÇÑ");
-define ("_MI_LATESTNEWS_ADMIN_MENU1", 'ÊÚÏíá ÇáÈáæß');
+define('_MI_LATESTNEWS_BLOCK', 'Ã‚ÃŽÃ‘ Ã‡Ã¡ÃƒÃŽÃˆÃ‡Ã‘');
+define('_MI_LATESTNEWS_BLOCKS_DESC', 'ÃˆÃ¡Ã¦ÃŸ Ã¡ÃšÃ‘Ã– Ã‚ÃŽÃ‘ Ã‡Ã¡ÃƒÃŽÃˆÃ‡Ã‘');
+define('_MI_LATESTNEWS_ADMIN_MENU1', 'ÃŠÃšÃÃ­Ã¡ Ã‡Ã¡ÃˆÃ¡Ã¦ÃŸ');

@@ -1,3 +1,3 @@
 <?php
-define ("_MI_LATESTNEWS_BLOCK","ÂÎÑ ÇáÃÎÈÇÑ");
-define ("_MI_LATESTNEWS_INF","ÂÎÑ ÇáÃÎÈÇÑ æ ÇáãÞÇáÇÊ ÇáãÖÇÝÉ");
+define('_MI_LATESTNEWS_BLOCK', 'Ã‚ÃŽÃ‘ Ã‡Ã¡ÃƒÃŽÃˆÃ‡Ã‘');
+define('_MI_LATESTNEWS_INF', 'Ã‚ÃŽÃ‘ Ã‡Ã¡ÃƒÃŽÃˆÃ‡Ã‘ Ã¦ Ã‡Ã¡Ã£ÃžÃ‡Ã¡Ã‡ÃŠ Ã‡Ã¡Ã£Ã–Ã‡ÃÃ‰');
