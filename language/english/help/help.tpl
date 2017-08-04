@@ -1,12 +1,7 @@
 <div id="help-template" class="outer">
-    <h1 class="head">Help:
-        <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/latestnews/admin/index.php"
-           title="Back to the administration of LatestNews"> LatestNews
-            <img src="<{xoAdminIcons home.png}>"
-                 alt="Back to the Administration of LatestNews"/>
-        </a></h1>
+    <{include file=$smarty.const._MI_LATESTNEWS_HELP_HEADER}>
 
-    <h4 class="odd">DESCRIPTION</h4><br>
+    <h4 class="odd">DESCRIPTION</h4> <br>
 
     <p>This module displays the latest news from the News module (version 1.70+) in a block.<br>.<br>
 

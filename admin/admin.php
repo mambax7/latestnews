@@ -32,7 +32,7 @@ if (empty($fct)) {
 //include XOOPS_ROOT_PATH."/include/cp_functions.php";
 require_once __DIR__ . '/header.php';
 require_once XOOPS_ROOT_PATH . '/kernel/module.php';
-require_once __DIR__ . '/../include/gtickets.php';// GIJ
+//require_once __DIR__ . '/../include/gtickets.php';// GIJ
 
 $admintest = 0;
 

@@ -26,13 +26,6 @@ $modversion['license_url']   = 'www.gnu.org/licenses/gpl-2.0.html';
 $modversion['official']      = 0; //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
 $modversion['image']         = 'assets/images/logoModule.png';
 $modversion['dirname']       = basename(__DIR__);
-
-//$modversion['icons16root']    = 'Frameworks/moduleclasses/icons/16';
-//$modversion['icons32root']    = 'Frameworks/moduleclasses/icons/32';
-//$modversion['dirmoduleadmin'] = '/Frameworks/moduleclasses/moduleadmin';
-//$modversion['icons16']        = '../../' . $modversion['icons16root'];
-//$modversion['icons32']        = '../../Frameworks/moduleclasses/icons/32';
-//$modversion['icons32'] = '../../' . $modversion['icons32root'];
 $modversion['modicons16'] = 'assets/images/icons/16';
 $modversion['modicons32'] = 'assets/images/icons/32';
 
@@ -49,6 +42,14 @@ $modversion['system_menu'] = 1;
 $modversion['adminindex']  = 'admin/index.php';
 //$modversion['adminindex'] = "admin/myblocksadmin.php";
 $modversion['adminmenu'] = 'admin/menu.php';
+
+// ------------------- Help files ------------------- //
+$modversion['helpsection'] = array(
+    ['name' => _MI_LATESTNEWS_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_LATESTNEWS_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => _MI_LATESTNEWS_LICENSE, 'link' => 'page=license'],
+    ['name' => _MI_LATESTNEWS_SUPPORT, 'link' => 'page=support'],
+);
 
 // Blocks
 $modversion['blocks'][1]['file']      = 'latestnews.php';

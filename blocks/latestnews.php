@@ -116,8 +116,8 @@ function block_latestnews_show($options)
                 $patterns[] = "/\[img align=(['\"]?)(left|center|right)\\1 width=(['\"]?)([0-9]*)\\3]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
                 $patterns[] = "/\[img align=(['\"]?)(left|center|right)\\1]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
                 $patterns[] = "/\[img]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-                $patterns[] = "/<img src=\"(.*)\" \/>/sU";
-                $patterns[] = "/<img src=(.*) \/>/sU";
+                $patterns[] = "/<img src=\"(.*)\" \>/sU";
+                $patterns[] = "/<img src=(.*) \>/sU";
 
                 $replacements[] = $startdiv . '<img ' . $style . ' src="\\3" ' . $enddiv;
                 $replacements[] = $startdiv . '<img ' . $style . ' src="\\3" ' . $enddiv;
