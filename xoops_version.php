@@ -11,7 +11,7 @@
 // # Public License (GPL - version 1 or 2) as published by the          #
 // # Free Software Foundation (http://www.gnu.org/)                     #
 // ######################################################################
-// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 $modversion['version']       = '0.73';
 $modversion['module_status'] = 'Beta 2';
@@ -35,7 +35,7 @@ $modversion['module_website_name'] = 'XOOPS';
 $modversion['min_php']             = '5.5';
 $modversion['min_xoops']           = '2.5.9';
 $modversion['min_admin']           = '1.2';
-$modversion['min_db']              = array('mysql' => '5.5');
+$modversion['min_db']              = ['mysql' => '5.5'];
 
 $modversion['hasAdmin']    = 1;
 $modversion['system_menu'] = 1;
@@ -44,12 +44,12 @@ $modversion['adminindex']  = 'admin/index.php';
 $modversion['adminmenu'] = 'admin/menu.php';
 
 // ------------------- Help files ------------------- //
-$modversion['helpsection'] = array(
+$modversion['helpsection'] = [
     ['name' => _MI_LATESTNEWS_OVERVIEW, 'link' => 'page=help'],
     ['name' => _MI_LATESTNEWS_DISCLAIMER, 'link' => 'page=disclaimer'],
     ['name' => _MI_LATESTNEWS_LICENSE, 'link' => 'page=license'],
     ['name' => _MI_LATESTNEWS_SUPPORT, 'link' => 'page=support'],
-);
+];
 
 // Blocks
 $modversion['blocks'][1]['file']      = 'latestnews.php';

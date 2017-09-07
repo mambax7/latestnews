@@ -46,7 +46,7 @@ class LatestNewsStory extends NewsStory
         $db   = XoopsDatabaseFactory::getDatabaseConnection();
         $myts = MyTextSanitizer::getInstance();
 
-        $ret = array();
+        $ret = [];
         $sql = 'SELECT s.*, t.* FROM ' . $db->prefix('news_stories') . ' s, ' . $db->prefix('news_topics') . ' t WHERE (s.published > 0 AND s.published <= ' . time() . ') AND (s.expired = 0 OR s.expired > ' . time() . ') AND (s.topicid=t.topic_id) ';
         if ($topic != 0) {
             if ($selected_stories) {
@@ -117,7 +117,7 @@ class LatestNewsStory extends NewsStory
         global $xoopsUser, $xoopsConfig, $xoopsModuleConfig;
         $myts                 = MyTextSanitizer::getInstance();
         $infotips             = news_getmoduleoption('infotips');
-        $story                = array();
+        $story                = [];
         $story['id']          = $this->storyid();
         $story['poster']      = $this->uname();
         $story['author_name'] = $this->uname();

@@ -25,7 +25,7 @@ function block_latestnews_show($options)
     $pathIcon16 = XOOPS_URL . '/' . $mymodule->getInfo('icons16root');
     //    $pathIcon16 = $mymodule->getInfo('icons16');
 
-    $block = array();
+    $block = [];
 
     if (!latestnews_checkmodule('news')) {
         return $block;
@@ -82,9 +82,9 @@ function block_latestnews_show($options)
 
     $scount  = count($sarray);
     $k       = 0;
-    $columns = array();
+    $columns = [];
     if ($scount > 0) {
-        $storieslist = array();
+        $storieslist = [];
         $height      = 0;
         $width       = 0;
         foreach ($sarray as $storyid => $thisstory) {
@@ -101,8 +101,8 @@ function block_latestnews_show($options)
 
             $len = strlen($thisstory->hometext());
             if ($letters < $len && $letters > 0) {
-                $patterns     = array();
-                $replacements = array();
+                $patterns     = [];
+                $replacements = [];
 
                 if ($options[4] != 0) {
                     $height = 'height="' . $imgheight . '"';
@@ -347,7 +347,7 @@ function b_latestnews_edit($options)
     //topics
     $form       .= $tabletag1 . _MB_LATESTNEWS_TOPICSDISPLAY . $tabletag2;
     $form       .= "<select name='options[]' multiple='multiple'>";
-    $topics_arr = array();
+    $topics_arr = [];
     $xt         = new LatestnewsXoopsTree($xoopsDB->prefix('news_topics'), 'topic_id', 'topic_pid');
     $topics_arr = $xt->getChildTreeArray(0, 'topic_title');
     $size       = count($options);
