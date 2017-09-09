@@ -15,18 +15,18 @@ $moduleHelper->loadLanguage('modinfo');
 
 $adminmenu              = [];
 $i                      = 0;
-$adminmenu[$i]['title'] = _AM_MODULEADMIN_HOME;
-$adminmenu[$i]['link']  = 'admin/index.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/home.png';
+'title' =>  _AM_MODULEADMIN_HOME,
+'link' =>  'admin/index.php',
+'icon' =>  $pathIcon32 . '/home.png',
 ++$i;
-$adminmenu[$i]['title'] = _MI_LATESTNEWS_ADMIN_MENU1;
-$adminmenu[$i]['link']  = 'admin/blocksadmin.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/block.png';
+'title' =>  _MI_LATESTNEWS_ADMIN_MENU1,
+'link' =>  'admin/blocksadmin.php',
+'icon' =>  $pathIcon32 . '/block.png',
 ++$i;
-$adminmenu[$i]['title'] = _MI_LATESTNEWS_ADMIN_MENU2;
-$adminmenu[$i]['link']  = 'admin/permissions.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/permissions.png';
+'title' =>  _MI_LATESTNEWS_ADMIN_MENU2,
+'link' =>  'admin/permissions.php',
+'icon' =>  $pathIcon32 . '/permissions.png',
 ++$i;
-$adminmenu[$i]['title'] = _AM_MODULEADMIN_ABOUT;
-$adminmenu[$i]['link']  = 'admin/about.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/about.png';
+'title' =>  _AM_MODULEADMIN_ABOUT,
+'link' =>  'admin/about.php',
+'icon' =>  $pathIcon32 . '/about.png',
