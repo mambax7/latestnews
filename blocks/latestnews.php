@@ -48,7 +48,7 @@ function block_latestnews_show($options)
     $sfiles = new sFiles();
 
     $dateformat = news_getmoduleoption('dateformat');
-    if ($dateformat == '') {
+    if ('' == $dateformat) {
         $dateformat = 's';
     }
 
@@ -62,7 +62,7 @@ function block_latestnews_show($options)
     $selected_stories = $options[7];
 
     $block['spec']['columnwidth'] = (int)(1 / $column_count * 100);
-    if ($options[8] == 1) {
+    if (1 == $options[8]) {
         $imgposition = 'right';
     } else {
         $imgposition = 'left';
@@ -104,7 +104,7 @@ function block_latestnews_show($options)
                 $patterns     = [];
                 $replacements = [];
 
-                if ($options[4] != 0) {
+                if (0 != $options[4]) {
                     $height = 'height="' . $imgheight . '"';
                 } // set height = 0 in block option for auto height
 
@@ -154,13 +154,13 @@ function block_latestnews_show($options)
             } else {
                 $news['admin'] = '';
             }
-            if ($options[9] == 1) {
+            if (1 == $options[9]) {
                 $block['topiclink'] = '| <a href="' . XOOPS_URL . '/modules/news/topics_directory.php">' . _AM_NEWS_TOPICS_DIRECTORY . '</a> ';
             }
-            if ($options[10] == 1) {
+            if (1 == $options[10]) {
                 $block['archivelink'] = '| <a href="' . XOOPS_URL . '/modules/news/archive.php">' . _NW_NEWSARCHIVES . '</a> ';
             }
-            if ($options[11] == 1) {
+            if (1 == $options[11]) {
                 if (empty($xoopsUser)) {
                     $block['submitlink'] = '';
                 } else {
@@ -169,19 +169,19 @@ function block_latestnews_show($options)
             }
 
             $news['poster'] = '';
-            if ($options[12] == 1) {
+            if (1 == $options[12]) {
                 $news['poster'] = '' . _MB_LATESTNEWS_POSTER . ' ' . $thisstory->uname() . '';
             }
             $news['posttime'] = '';
-            if ($options[13] == 1) {
+            if (1 == $options[13]) {
                 $news['posttime'] = '' . _ON . ' ' . $published . '';
             }
             $news['topic_title'] = '';
-            if ($options[14] == 1) {
+            if (1 == $options[14]) {
                 $news['topic_title'] = '' . $thisstory->textlink() . '' . _MB_SP . '';
             }
             $news['read'] = '';
-            if ($options[15] == 1) {
+            if (1 == $options[15]) {
                 $news['read'] = '&nbsp;(' . $thisstory->counter . ' ' . _READS . ')';
             }
 
@@ -191,11 +191,11 @@ function block_latestnews_show($options)
             } else {
                 $news['more'] = '';
             }
-            if ($options[16] == 1) {
+            if (1 == $options[16]) {
                 if ($comments > 0) {
                     //shows 1 comment instead of 1 comm. if comments ==1
                     //langugage file modified accordingly
-                    if ($comments == 1) {
+                    if (1 == $comments) {
                         $news['comment'] = '&nbsp;' . _NW_ONECOMMENT . '</a>&nbsp;';
                     } else {
                         $news['comment'] = '&nbsp;' . $comments . '&nbsp;' . _NW_COMMENTS . '</a>&nbsp;';
@@ -206,17 +206,17 @@ function block_latestnews_show($options)
             }
 
             $news['print'] = '';
-            if ($options[17] == 1) {
+            if (1 == $options[17]) {
                 $news['print'] = '<a href="' . XOOPS_URL . '/modules/news/print.php?storyid=' . $storyid . '" rel="nofollow"><img src=' . $pathIcon16 . '/printer.png title="' . _NW_PRINTERFRIENDLY . '" alt="' . _NW_PRINTERFRIENDLY . '"></a>';
             }
 
             $news['pdf'] = '';
-            if ($options[18] == 1) {
+            if (1 == $options[18]) {
                 $news['pdf'] = '&nbsp;<a href="' . XOOPS_URL . '/modules/news/makepdf.php?storyid=' . $storyid . '" rel="nofollow"><img src="' . $pathIcon16 . '/pdf.png" title="' . _NW_MAKEPDF . '" alt="' . _NW_MAKEPDF . '"></a>&nbsp;';
             }
 
             $news['email'] = '';
-            if ($options[19] == 1) {
+            if (1 == $options[19]) {
                 $news['email'] = '<a href="mailto:?subject='
                                  . sprintf(_NW_INTARTICLE, $xoopsConfig['sitename'])
                                  . '&amp;body='
@@ -234,11 +234,11 @@ function block_latestnews_show($options)
                                  . '"></a>&nbsp;';
             }
 
-            if ($options[20] == 1) {
+            if (1 == $options[20]) {
                 $block['morelink'] = '&nbsp;<a href="' . XOOPS_URL . '/modules/news/index.php?storytopic=0&start=' . $limit . '">' . _MB_MORE_STORIES . '</A> ';
             }
 
-            if ($options[21] == 1) {
+            if (1 == $options[21]) {
                 $block['latestnews_scroll'] = true;
             } else {
                 $block['latestnews_scroll'] = false;
@@ -327,18 +327,18 @@ function b_latestnews_edit($options)
     $form .= $tabletag1 . _MB_LATESTNEWS_ORDERBY . $tabletag2;
     $form .= "<select name='options[]'>";
     $form .= "<option value='published'";
-    if ($options[24] == 'published') {
+    if ('published' == $options[24]) {
         $form .= ' selected';
     }
     $form .= '>' . _MB_LATESTNEWS_DATE . "</option>\n";
 
     $form .= "<option value='counter'";
-    if ($options[24] == 'counter') {
+    if ('counter' == $options[24]) {
         $form .= ' selected';
     }
     $form .= '>' . _MB_LATESTNEWS_HITS . '</option>';
     $form .= "<option value='rating'";
-    if ($options[24] == 'rating') {
+    if ('rating' == $options[24]) {
         $form .= ' selected';
     }
     $form .= '>' . _MB_LATESTNEWS_RATE . '</option>';
@@ -353,7 +353,7 @@ function b_latestnews_edit($options)
     $size       = count($options);
     foreach ($topics_arr as $onetopic) {
         $sel = '';
-        if ($onetopic['topic_pid'] != 0) {
+        if (0 != $onetopic['topic_pid']) {
             $onetopic['prefix'] = str_replace('.', '-', $onetopic['prefix']) . '&nbsp;';
         } else {
             $onetopic['prefix'] = str_replace('.', '', $onetopic['prefix']);

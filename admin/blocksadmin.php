@@ -31,8 +31,8 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
     }
 
     if (isset($_GET['op'])) {
-        if ($_GET['op'] === 'edit' || $_GET['op'] === 'delete' || $_GET['op'] === 'delete_ok' || $_GET['op'] === 'clone'
-            || $_GET['op'] === 'edit') {
+        if ('edit' === $_GET['op'] || 'delete' === $_GET['op'] || 'delete_ok' === $_GET['op'] || 'clone' === $_GET['op']
+            || 'edit' === $_GET['op']) {
             $op  = $_GET['op'];
             $bid = isset($_GET['bid']) ? (int)$_GET['bid'] : 0;
         }
@@ -131,29 +131,29 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             }
 
             $sel0 = $sel1 = $ssel0 = $ssel1 = $ssel2 = $ssel3 = $ssel4 = $ssel5 = $ssel6 = $ssel7 = '';
-            if ($i->getVar('visible') == 1) {
+            if (1 == $i->getVar('visible')) {
                 $sel1 = ' checked';
             } else {
                 $sel0 = ' checked';
             }
-            if ($i->getVar('side') == XOOPS_SIDEBLOCK_LEFT) {
+            if (XOOPS_SIDEBLOCK_LEFT == $i->getVar('side')) {
                 $ssel0 = ' checked';
-            } elseif ($i->getVar('side') == XOOPS_SIDEBLOCK_RIGHT) {
+            } elseif (XOOPS_SIDEBLOCK_RIGHT == $i->getVar('side')) {
                 $ssel1 = ' checked';
-            } elseif ($i->getVar('side') == XOOPS_CENTERBLOCK_LEFT) {
+            } elseif (XOOPS_CENTERBLOCK_LEFT == $i->getVar('side')) {
                 $ssel2 = ' checked';
-            } elseif ($i->getVar('side') == XOOPS_CENTERBLOCK_RIGHT) {
+            } elseif (XOOPS_CENTERBLOCK_RIGHT == $i->getVar('side')) {
                 $ssel4 = ' checked';
-            } elseif ($i->getVar('side') == XOOPS_CENTERBLOCK_CENTER) {
+            } elseif (XOOPS_CENTERBLOCK_CENTER == $i->getVar('side')) {
                 $ssel3 = ' checked';
-            } elseif ($i->getVar('side') == XOOPS_CENTERBLOCK_BOTTOMLEFT) {
+            } elseif (XOOPS_CENTERBLOCK_BOTTOMLEFT == $i->getVar('side')) {
                 $ssel5 = ' checked';
-            } elseif ($i->getVar('side') == XOOPS_CENTERBLOCK_BOTTOMRIGHT) {
+            } elseif (XOOPS_CENTERBLOCK_BOTTOMRIGHT == $i->getVar('side')) {
                 $ssel6 = ' checked';
-            } elseif ($i->getVar('side') == XOOPS_CENTERBLOCK_BOTTOM) {
+            } elseif (XOOPS_CENTERBLOCK_BOTTOM == $i->getVar('side')) {
                 $ssel7 = ' checked';
             }
-            if ($i->getVar('title') == '') {
+            if ('' == $i->getVar('title')) {
                 $title = '&nbsp;';
             } else {
                 $title = $i->getVar('title');
@@ -245,7 +245,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             echo "<td class='$class' align='center'><a href='blocksadmin.php?op=edit&amp;bid=" . $i->getVar('bid') . "'><img src=" . $pathIcon16 . '/edit.png' . " alt='" . _EDIT . "' title='" . _EDIT . "'>
                  </a> <a href='blocksadmin.php?op=clone&amp;bid=" . $i->getVar('bid') . "'><img src=" . $pathIcon16 . '/editcopy.png' . " alt='" . _CLONE . "' title='" . _CLONE . "'>
                  </a>";
-            if ($i->getVar('block_type') !== 'S' && $i->getVar('block_type') !== 'M') {
+            if ('S' !== $i->getVar('block_type') && 'M' !== $i->getVar('block_type')) {
                 echo "&nbsp;<a href='" . XOOPS_URL . '/modules/system/admin.php?fct=blocksadmin&amp;op=delete&amp;bid=' . $i->getVar('bid') . "'><img src=" . $pathIcon16 . '/delete.png' . " alt='" . _DELETE . "' title='" . _DELETE . "'>
                      </a>";
             }
@@ -259,7 +259,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             <input type='hidden' name='bid[" . $i->getVar('bid') . "]' value='" . $i->getVar('bid') . "'>
             </td></tr>
             ";
-            $class = ($class === 'even') ? 'odd' : 'even';
+            $class = ('even' === $class) ? 'odd' : 'even';
         }
         echo "<tr><td class='foot' align='center' colspan='8'>
         <input type='hidden' name='op' value='order'>
@@ -303,7 +303,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         while ($row = $db->fetchArray($result)) {
             $modules[] = (int)$row['module_id'];
         }
-        $is_custom = ($myblock->getVar('block_type') === 'C' || $myblock->getVar('block_type') === 'E') ? true : false;
+        $is_custom = ('C' === $myblock->getVar('block_type') || 'E' === $myblock->getVar('block_type')) ? true : false;
         $block     = [
             'title'      => $myblock->getVar('title') . ' Clone',
             'form_title' => _AM_XTUBE_BLOCKS_CLONEBLOCK,
@@ -370,7 +370,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             $clone->setVar('options', $options);
         }
         $clone->setVar('bid', 0);
-        if ($block->getVar('block_type') === 'C' || $block->getVar('block_type') === 'E') {
+        if ('C' === $block->getVar('block_type') || 'E' === $block->getVar('block_type')) {
             $clone->setVar('block_type', 'E');
         } else {
             $clone->setVar('block_type', 'D');
@@ -382,7 +382,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             xoops_cp_footer();
             exit();
         }
-        if ($clone->getVar('template') != '') {
+        if ('' != $clone->getVar('template')) {
             $tplfileHandler = xoops_getHandler('tplfile');
             $btemplate      =& $tplfileHandler->find($GLOBALS['xoopsConfig']['template_set'], 'block', $bid);
             if (count($btemplate) > 0) {
@@ -455,7 +455,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         while ($row = $db->fetchArray($result)) {
             $modules[] = (int)$row['module_id'];
         }
-        $is_custom = ($myblock->getVar('block_type') === 'C' || $myblock->getVar('block_type') === 'E') ? true : false;
+        $is_custom = ('C' === $myblock->getVar('block_type') || 'E' === $myblock->getVar('block_type')) ? true : false;
         $block     = [
             'title'      => $myblock->getVar('title'),
             'form_title' => _AM_SYSTEM_BLOCKS_EDITBLOCK,
@@ -522,7 +522,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         redirect_header($_SERVER['PHP_SELF'], 1, _AM_LATESTNEWS_UPDATE_SUCCESS);
     }
 
-    if ($op === 'list') {
+    if ('list' === $op) {
         xoops_cp_header();
         //        mpu_adm_menu();
         listBlocks();
@@ -530,7 +530,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         exit();
     }
 
-    if ($op === 'order') {
+    if ('order' === $op) {
         if (!$GLOBALS['xoopsSecurity']->check()) {
             redirect_header($_SERVER['PHP_SELF'], 3, implode('<br>', $GLOBALS['xoopsSecurity']->getErrors()));
         }
@@ -564,19 +564,19 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         }
         redirect_header($_SERVER['PHP_SELF'], 1, _AM_LATESTNEWS_UPDATE_SUCCESS);
     }
-    if ($op === 'clone') {
+    if ('clone' === $op) {
         cloneBlock($bid);
     }
 
-    if ($op === 'edit') {
+    if ('edit' === $op) {
         xtubeEditBlock($bid);
     }
 
-    if ($op === 'edit_ok') {
+    if ('edit_ok' === $op) {
         xtubeUpdateBlock($bid, $btitle, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $options, $groups);
     }
 
-    if ($op === 'clone_ok') {
+    if ('clone_ok' === $op) {
         isBlockCloned($bid, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $options);
     }
 } else {

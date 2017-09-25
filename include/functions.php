@@ -29,12 +29,12 @@ function latestnews_checkmodule($checkmodule = 'news')
 function latestnews_mk_chkbox($options, $number)
 {
     $chk = '';
-    if ($options[$number] == 1) {
+    if (1 == $options[$number]) {
         $chk = ' checked';
     }
     $chkbox = "<input type='radio' name='options[$number]' value='1'" . $chk . '>&nbsp;' . _YES . '&nbsp;&nbsp;';
     $chk    = '';
-    if ($options[$number] == 0) {
+    if (0 == $options[$number]) {
         $chk = ' checked';
     }
     $chkbox .= "<input type='radio' name='options[$number]' value='0'" . $chk . '>&nbsp;' . _NO . '</td></tr>';
@@ -45,12 +45,12 @@ function latestnews_mk_chkbox($options, $number)
 function latestnews_mk_select($options, $number)
 {
     $slc = '';
-    if ($options[$number] == 1) {
+    if (1 == $options[$number]) {
         $slc = ' checked';
     }
     $select = "<input type='radio' name='options[$number]' value='1'" . $slc . '>&nbsp;' . _LEFT . '&nbsp;&nbsp;';
     $slc    = '';
-    if ($options[$number] == 0) {
+    if (0 == $options[$number]) {
         $slc = ' checked';
     }
     $select .= "<input type='radio' name='options[$number]' value='0'" . $slc . '>&nbsp;' . _RIGHT . '</td></tr>';

@@ -62,7 +62,7 @@ if ($block['is_custom']) {
                                   ]);
     $form->addElement($ctype_select);
 } else {
-    if ($block['template'] != '') {
+    if ('' != $block['template']) {
         $tplfileHandler = xoops_getHandler('tplfile');
         $btemplate      =& $tplfileHandler->find($GLOBALS['xoopsConfig']['template_set'], 'block', $block['bid']);
         if (count($btemplate) > 0) {
@@ -74,7 +74,7 @@ if ($block['is_custom']) {
             }
         }
     }
-    if ($block['edit_form'] !== false) {
+    if (false !== $block['edit_form']) {
         $form->addElement(new XoopsFormLabel(_AM_SYSTEM_BLOCKS_OPTIONS, $block['edit_form']));
     }
 }

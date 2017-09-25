@@ -61,8 +61,8 @@ $modversion['blocks'][1]['options']   = '6|2|200|100|100|2|dcdcdc|0|right|1|1|1|
 $modversion['blocks'][1]['can_clone'] = true;
 
 // On Update
-if (!empty($_POST['fct']) && !empty($_POST['op']) && !empty($_POST['diranme']) && $_POST['fct'] == 'modulesadmin'
-    && $_POST['op'] == 'update_ok'
+if (!empty($_POST['fct']) && !empty($_POST['op']) && !empty($_POST['diranme']) && 'modulesadmin' == $_POST['fct']
+    && 'update_ok' == $_POST['op']
     && $_POST['dirname'] == $modversion['dirname']) {
     include __DIR__ . '/include/onupdate.inc.php';
 }

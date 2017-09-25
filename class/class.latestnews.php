@@ -48,7 +48,7 @@ class LatestNewsStory extends NewsStory
 
         $ret = [];
         $sql = 'SELECT s.*, t.* FROM ' . $db->prefix('news_stories') . ' s, ' . $db->prefix('news_topics') . ' t WHERE (s.published > 0 AND s.published <= ' . time() . ') AND (s.expired = 0 OR s.expired > ' . time() . ') AND (s.topicid=t.topic_id) ';
-        if ($topic != 0) {
+        if (0 != $topic) {
             if ($selected_stories) {
                 $sql .= ' AND s.storyid IN (' . $selected_stories . ')';
             }
@@ -85,7 +85,7 @@ class LatestNewsStory extends NewsStory
                     return null;
                 }
             }
-            if ((int)$ihome == 0) {
+            if (0 == (int)$ihome) {
                 $sql .= ' AND s.ihome=0';
             }
         }
@@ -122,16 +122,16 @@ class LatestNewsStory extends NewsStory
         $story['poster']      = $this->uname();
         $story['author_name'] = $this->uname();
         $story['author_uid']  = $this->uid();
-        if ($story['poster'] !== false) {
+        if (false !== $story['poster']) {
             $story['poster'] = "<a href='" . XOOPS_URL . '/userinfo.php?uid=' . $this->uid() . "'>" . $story['poster'] . '</a>';
         } else {
-            if ($xoopsModuleConfig['displayname'] != 3) {
+            if (3 != $xoopsModuleConfig['displayname']) {
                 $story['poster'] = $xoopsConfig['anonymous'];
             }
         }
         if (isset($xoopsModuleConfig['ratenews'])) {
             $story['rating'] = number_format($this->rating(), 2);
-            if ($this->votes == 1) {
+            if (1 == $this->votes) {
                 $story['votes'] = _NW_ONEVOTE;
             } else {
                 $story['votes'] = sprintf(_NW_NUMVOTES, $this->votes);
@@ -165,11 +165,11 @@ class LatestNewsStory extends NewsStory
             $ccount    = $this->comments();
             $morelink  .= '<a href="' . XOOPS_URL . '/modules/news/article.php?storyid=' . $this->storyid() . '';
             $morelink2 = '<a href="' . XOOPS_URL . '/modules/news/article.php?storyid=' . $this->storyid() . '';
-            if ($ccount == 0) {
+            if (0 == $ccount) {
                 $morelink .= '">' . _NW_COMMENTS . '</a>';
             } else {
                 if ($fullcount < 1) {
-                    if ($ccount == 1) {
+                    if (1 == $ccount) {
                         $morelink .= '">' . _NW_READMORE . '</a> | ' . $morelink2 . '">' . _NW_ONECOMMENT . '</a>';
                     } else {
                         $morelink .= '">' . _NW_READMORE . '</a> | ' . $morelink2 . '">';
@@ -177,7 +177,7 @@ class LatestNewsStory extends NewsStory
                         $morelink .= '</a>';
                     }
                 } else {
-                    if ($ccount == 1) {
+                    if (1 == $ccount) {
                         $morelink .= '">' . _NW_ONECOMMENT . '</a>';
                     } else {
                         $morelink .= '">';
@@ -195,7 +195,7 @@ class LatestNewsStory extends NewsStory
             $approveprivilege = 1;
         }
 
-        if (isset($xoopsModuleConfig['authoredit']) && $xoopsModuleConfig['authoredit'] == 1
+        if (isset($xoopsModuleConfig['authoredit']) && 1 == $xoopsModuleConfig['authoredit']
             && (is_object($xoopsUser)
                 && $xoopsUser->getVar('uid') == $this->uid())) {
             $approveprivilege = 1;
