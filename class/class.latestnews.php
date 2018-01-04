@@ -44,7 +44,7 @@ class LatestNewsStory extends NewsStory
         $topic_frontpage = false
     ) {
         $db   = XoopsDatabaseFactory::getDatabaseConnection();
-        $myts = MyTextSanitizer::getInstance();
+        $myts = \MyTextSanitizer::getInstance();
 
         $ret = [];
         $sql = 'SELECT s.*, t.* FROM ' . $db->prefix('news_stories') . ' s, ' . $db->prefix('news_topics') . ' t WHERE (s.published > 0 AND s.published <= ' . time() . ') AND (s.expired = 0 OR s.expired > ' . time() . ') AND (s.topicid=t.topic_id) ';
@@ -115,7 +115,7 @@ class LatestNewsStory extends NewsStory
     {
         require_once XOOPS_ROOT_PATH . '/modules/news/include/functions.php';
         global $xoopsUser, $xoopsConfig, $xoopsModuleConfig;
-        $myts                 = MyTextSanitizer::getInstance();
+        $myts                 = \MyTextSanitizer::getInstance();
         $infotips             = news_getmoduleoption('infotips');
         $story                = [];
         $story['id']          = $this->storyid();

@@ -5,3 +5,6 @@
 define('_MI_LATESTNEWS_BLOCK', 'بلوک آخرین اخبار');
 define('_MI_LATESTNEWS_BLOCKS_DESC', 'آخرین اخبار منتشر شده در این سایت');
 define('_MI_LATESTNEWS_ADMIN_MENU1', 'ویرایش بلوک');
+
+define('_MI_LATESTNEWS_HOME', 'Home');
+define('_MI_LATESTNEWS_ABOUT', 'About');

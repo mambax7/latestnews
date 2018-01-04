@@ -1,19 +1,16 @@
 <?php
 
-$moduleDirName = basename(dirname(__DIR__));
+use XoopsModules\Latestnews;
 
-if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
-} else {
-    $moduleHelper = Xmf\Module\Helper::getHelper('system');
-}
+require_once __DIR__ . '/../class/Helper.php';
+//require_once __DIR__ . '/../include/common.php';
+$helper = Latestnews\Helper::getInstance();
 
 $pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
-//$pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
-
-$moduleHelper->loadLanguage('modinfo');
+$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 
 $adminmenu[] = [
-    'title' => _AM_MODULEADMIN_HOME,
+    'title' => _MI_LATESTNEWS_HOME,
     'link'  => 'admin/index.php',
     'icon'  => $pathIcon32 . '/home.png',
 ];
@@ -31,8 +28,7 @@ $adminmenu[] = [
 ];
 
 $adminmenu[] = [
-    'title' => _AM_MODULEADMIN_ABOUT,
+    'title' => _MI_LATESTNEWS_ABOUT,
     'link'  => 'admin/about.php',
     'icon'  => $pathIcon32 . '/about.png',
 ];
-

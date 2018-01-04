@@ -18,3 +18,6 @@ define('_MI_LATESTNEWS_OVERVIEW', 'Overview');
 define('_MI_LATESTNEWS_DISCLAIMER', 'Disclaimer');
 define('_MI_LATESTNEWS_LICENSE', 'License');
 define('_MI_LATESTNEWS_SUPPORT', 'Support');
+
+define('_MI_LATESTNEWS_HOME', 'Home');
+define('_MI_LATESTNEWS_ABOUT', 'About');
