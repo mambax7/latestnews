@@ -12,6 +12,11 @@
 // # Free Software Foundation (http://www.gnu.org/)                     #
 // ######################################################################
 
+use XoopsModules\Latestnews;
+
+/** @var Latestnews\Helper $helper */
+$helper = Latestnews\Helper::getInstance();
+
 class LatestNewsStory extends NewsStory
 {
     public function __construct($id = -1)
@@ -41,9 +46,9 @@ class LatestNewsStory extends NewsStory
         $ihome = 0,
         $asobject = true,
         $order = 'published',
-        $topic_frontpage = false
-    ) {
-        $db   = XoopsDatabaseFactory::getDatabaseConnection();
+        $topic_frontpage = false)
+    {
+        $db   = \XoopsDatabaseFactory::getDatabaseConnection();
         $myts = \MyTextSanitizer::getInstance();
 
         $ret = [];
@@ -95,7 +100,7 @@ class LatestNewsStory extends NewsStory
         $sql    .= " ORDER BY s.$order DESC";
         $result = $db->query($sql, (int)$limit, (int)$start);
 
-        while ($myrow = $db->fetchArray($result)) {
+        while (false !== ($myrow = $db->fetchArray($result))) {
             if ($asobject) {
                 $ret[] = new LatestNewsStory($myrow);
             } else {
@@ -114,7 +119,10 @@ class LatestNewsStory extends NewsStory
     public function prepare2show($filescount)
     {
         require_once XOOPS_ROOT_PATH . '/modules/news/include/functions.php';
-        global $xoopsUser, $xoopsConfig, $xoopsModuleConfig;
+        global $xoopsUser, $xoopsConfig;
+        /** @var Latestnews\Helper $helper */
+        $helper = Latestnews\Helper::getInstance();
+
         $myts                 = \MyTextSanitizer::getInstance();
         $infotips             = news_getmoduleoption('infotips');
         $story                = [];
@@ -125,11 +133,11 @@ class LatestNewsStory extends NewsStory
         if (false !== $story['poster']) {
             $story['poster'] = "<a href='" . XOOPS_URL . '/userinfo.php?uid=' . $this->uid() . "'>" . $story['poster'] . '</a>';
         } else {
-            if (3 != $xoopsModuleConfig['displayname']) {
+            if (3 != $helper->getConfig('displayname')) {
                 $story['poster'] = $xoopsConfig['anonymous'];
             }
         }
-        if (isset($xoopsModuleConfig['ratenews'])) {
+        if ('' !== ($helper->getConfig('ratenews'))) {
             $story['rating'] = number_format($this->rating(), 2);
             if (1 == $this->votes) {
                 $story['votes'] = _NW_ONEVOTE;
@@ -157,11 +165,11 @@ class LatestNewsStory extends NewsStory
             $morelink .= '<a href="' . XOOPS_URL . '/modules/news/article.php?storyid=' . $this->storyid() . '';
             $morelink .= '">' . _NW_READMORE . '</a>';
             $morelink .= ' | ' . sprintf(_NW_BYTESMORE, $totalcount);
-            if (isset($xoopsModuleConfig['com_rule']) && XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
+            if ('' !== ($helper->getConfig('com_rule')) && XOOPS_COMMENT_APPROVENONE != $helper->getConfig('com_rule')) {
                 $morelink .= ' | ';
             }
         }
-        if (isset($xoopsModuleConfig['com_rule']) && XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
+        if ('' !== ($helper->getConfig('com_rule')) && XOOPS_COMMENT_APPROVENONE != $helper->getConfig('com_rule')) {
             $ccount    = $this->comments();
             $morelink  .= '<a href="' . XOOPS_URL . '/modules/news/article.php?storyid=' . $this->storyid() . '';
             $morelink2 = '<a href="' . XOOPS_URL . '/modules/news/article.php?storyid=' . $this->storyid() . '';
@@ -195,7 +203,7 @@ class LatestNewsStory extends NewsStory
             $approveprivilege = 1;
         }
 
-        if (isset($xoopsModuleConfig['authoredit']) && 1 == $xoopsModuleConfig['authoredit']
+        if ('' !== ($helper->getConfig('authoredit')) && 1 == $helper->getConfig('authoredit')
             && (is_object($xoopsUser)
                 && $xoopsUser->getVar('uid') == $this->uid())) {
             $approveprivilege = 1;

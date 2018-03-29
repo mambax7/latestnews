@@ -11,7 +11,7 @@
 // # Public License (GPL - version 1 or 2) as published by the          #
 // # Free Software Foundation (http://www.gnu.org/)                     #
 // ######################################################################
-// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+// defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 include __DIR__ . '/preloads/autoloader.php';
 
@@ -63,8 +63,8 @@ $modversion['blocks'][1]['options']   = '6|2|200|100|100|2|dcdcdc|0|right|1|1|1|
 $modversion['blocks'][1]['can_clone'] = true;
 
 // On Update
-if (!empty($_POST['fct']) && !empty($_POST['op']) && !empty($_POST['diranme']) && 'modulesadmin' == $_POST['fct']
-    && 'update_ok' == $_POST['op']
+if (!empty($_POST['fct']) && !empty($_POST['op']) && !empty($_POST['diranme']) && 'modulesadmin' === $_POST['fct']
+    && 'update_ok' === $_POST['op']
     && $_POST['dirname'] == $modversion['dirname']) {
     include __DIR__ . '/include/onupdate.inc.php';
 }

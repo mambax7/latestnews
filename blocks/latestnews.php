@@ -12,6 +12,8 @@
 // # Free Software Foundation (http://www.gnu.org/)                     #
 // ######################################################################
 
+use XoopsModules\Latestnews;
+
 function block_latestnews_show($options)
 {
     /** @var XoopsModuleHandler $moduleHandler */
@@ -38,11 +40,9 @@ function block_latestnews_show($options)
     require_once XOOPS_ROOT_PATH . '/class/tree.php';
     require_once XOOPS_ROOT_PATH . '/modules/' . $mydir . '/class/class.' . $mydir . '.php'; //Bandit-X
 
-    if (file_exists(XOOPS_ROOT_PATH . '/modules/news/language/' . $xoopsConfig['language'] . '/main.php')) {
-        require_once XOOPS_ROOT_PATH . '/modules/news/language/' . $xoopsConfig['language'] . '/main.php';
-    } else {
-        require_once XOOPS_ROOT_PATH . '/modules/news/language/english/main.php';
-    }
+    /** @var Latestnews\Helper $helper */
+    $helper = Latestnews\Helper::getInstance();
+    $helper->loadLanguage('admin');
 
     $myts   = \MyTextSanitizer::getInstance();
     $sfiles = new sFiles();
@@ -327,18 +327,18 @@ function b_latestnews_edit($options)
     $form .= $tabletag1 . _MB_LATESTNEWS_ORDERBY . $tabletag2;
     $form .= "<select name='options[]'>";
     $form .= "<option value='published'";
-    if ('published' == $options[24]) {
+    if ('published' === $options[24]) {
         $form .= ' selected';
     }
     $form .= '>' . _MB_LATESTNEWS_DATE . "</option>\n";
 
     $form .= "<option value='counter'";
-    if ('counter' == $options[24]) {
+    if ('counter' === $options[24]) {
         $form .= ' selected';
     }
     $form .= '>' . _MB_LATESTNEWS_HITS . '</option>';
     $form .= "<option value='rating'";
-    if ('rating' == $options[24]) {
+    if ('rating' === $options[24]) {
         $form .= ' selected';
     }
     $form .= '>' . _MB_LATESTNEWS_RATE . '</option>';

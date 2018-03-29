@@ -34,7 +34,7 @@ $global_perms_array    = [
     '2' => _AM_LATESTNEWS_ACCESSRIGHTS
 ];
 
-$permissionsForm = new XoopsGroupPermForm($formTitle, $moduleId, $permissionName, $permissionDescription, 'admin/permissions.php');
+$permissionsForm = new \XoopsGroupPermForm($formTitle, $moduleId, $permissionName, $permissionDescription, 'admin/permissions.php');
 foreach ($global_perms_array as $perm_id => $permissionName) {
     $permissionsForm->addItem($perm_id, $permissionName);
 }
