@@ -14,8 +14,6 @@
 
 use XoopsModules\Latestnews;
 
-/** @var Latestnews\Helper $helper */
-$helper = Latestnews\Helper::getInstance();
 
 class LatestNewsStory extends NewsStory
 {
