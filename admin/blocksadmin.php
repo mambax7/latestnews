@@ -53,7 +53,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         /** @var XoopsModuleHandler $moduleHandler */
         $moduleHandler     = xoops_getHandler('module');
         $memberHandler     = xoops_getHandler('member');
-        $modulepermHandler = xoops_getHandler('groupperm');
+        $grouppermHandler = xoops_getHandler('groupperm');
         $groups            = $memberHandler->getGroups();
         $criteria          = new \CriteriaCompo(new \Criteria('hasmain', 1));
         $criteria->add(new \Criteria('isactive', 1));
@@ -108,7 +108,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             '2592000' => _MONTH
         ];
         foreach ($block_arr as $i) {
-            $groups_perms =& $modulepermHandler->getGroupIds('block_read', $i->getVar('bid'));
+            $groups_perms =& $grouppermHandler->getGroupIds('block_read', $i->getVar('bid'));
             $sql          = 'SELECT module_id FROM ' . $db->prefix('block_module_link') . ' WHERE block_id=' . $i->getVar('bid');
             $result       = $db->query($sql);
             $modules      = [];
