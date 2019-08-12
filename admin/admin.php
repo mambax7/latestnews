@@ -16,7 +16,6 @@
  * @since
  * @author       XOOPS Development Team, Kazumi Ono (AKA onokazu)
  */
-
 $admin_mydirname = basename(dirname(__DIR__));
 
 $fct = empty($_POST['fct']) ? '' : trim($_POST['fct']);
@@ -29,7 +28,7 @@ if (empty($fct)) {
 //}
 //include "../../../mainfile.php";
 // include "../../mainfile.php"; GIJ
-//include XOOPS_ROOT_PATH."/include/cp_functions.php";
+//require_once XOOPS_ROOT_PATH."/include/cp_functions.php";
 require_once __DIR__ . '/header.php';
 require_once XOOPS_ROOT_PATH . '/kernel/module.php';
 //require_once  dirname(__DIR__) . '/include/gtickets.php';// GIJ
@@ -55,7 +54,7 @@ if (0 != $admintest) {
             xoops_loadLanguage('admin', 'system');
             xoops_loadLanguage('admin/' . $fct, 'system');
 
-            include XOOPS_ROOT_PATH . '/modules/system/admin/' . $fct . '/xoops_version.php';
+            require_once XOOPS_ROOT_PATH . '/modules/system/admin/' . $fct . '/xoops_version.php';
             $syspermHandler = xoops_getHandler('groupperm');
             $category       = !empty($modversion['category']) ? (int)$modversion['category'] : 0;
             unset($modversion);
@@ -109,7 +108,7 @@ if (false !== $error) {
     $counter   = 0;
     $class     = 'even';
     while ($file = readdir($handle)) {
-        if ('cvs' !== strtolower($file) && !preg_match('/[.]/', $file) && is_dir($admin_dir . '/' . $file)) {
+        if ('cvs' !== mb_strtolower($file) && !preg_match('/[.]/', $file) && is_dir($admin_dir . '/' . $file)) {
             include $admin_dir . '/' . $file . '/xoops_version.php';
             if ($modversion['hasAdmin']) {
                 $category = isset($modversion['category']) ? (int)$modversion['category'] : 0;

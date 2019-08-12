@@ -3,7 +3,6 @@
  * @Language   : Castellano
  * @Translators: Cerbero /
  */
-
 define('_MB_LATESTNEWS_INF', 'Bloque Últimas Notí­cias');
 define('_MB_LATESTNEWS_POSTER', 'Escrito por ');
 define('_MB_SP', ' : ');

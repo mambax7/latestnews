@@ -16,7 +16,7 @@ use XoopsModules\Latestnews;
 
 function block_latestnews_show($options)
 {
-    /** @var XoopsModuleHandler $moduleHandler */
+    /** @var \XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
     $mydir         = basename(dirname(__DIR__));
 
@@ -74,10 +74,10 @@ function block_latestnews_show($options)
            .latestnews img { vertical-align:baseline; padding: 2px; margin: 5px}</style>' . $xoopsTpl->get_template_vars('xoops_module_header'));
 
     if (!isset($options[25])) {
-        $sarray = LatestNewsStory::getAllPublished($limit, $selected_stories, 0, true, 0, 0, true, $options[24], false);
+        $sarray = LatestStory::getAllPublished($limit, $selected_stories, 0, true, 0, 0, true, $options[24], false);
     } else {
         $topics = array_slice($options, 25);
-        $sarray = LatestNewsStory::getAllPublished($limit, $selected_stories, 0, true, $topics, 0, true, $options[24], false);
+        $sarray = LatestStory::getAllPublished($limit, $selected_stories, 0, true, $topics, 0, true, $options[24], false);
     }
 
     $scount  = count($sarray);
@@ -99,7 +99,7 @@ function block_latestnews_show($options)
             $bodytext   = $thisstory->bodytext;
             $news       = $thisstory->prepare2show($filescount);
 
-            $len = strlen($thisstory->hometext());
+            $len = mb_strlen($thisstory->hometext());
             if ($letters < $len && $letters > 0) {
                 $patterns     = [];
                 $replacements = [];
@@ -125,7 +125,7 @@ function block_latestnews_show($options)
                 $replacements[] = $startdiv . '<img ' . $style . ' src="\\1" ' . $enddiv;
                 $replacements[] = $startdiv . '<img ' . $style . ' src="\\1" ' . $enddiv;
 
-                $letters      = strrpos(substr($thisstory->hometext, 0, $letters), ' ');
+                $letters      = mb_strrpos(mb_substr($thisstory->hometext, 0, $letters), ' ');
                 $news['text'] = preg_replace($patterns, $replacements, xoops_substr($thisstory->hometext, 0, $letters + 3));
             }
 
@@ -348,7 +348,7 @@ function b_latestnews_edit($options)
     $form       .= $tabletag1 . _MB_LATESTNEWS_TOPICSDISPLAY . $tabletag2;
     $form       .= "<select name='options[]' multiple='multiple'>";
     $topics_arr = [];
-    $xt         = new LatestnewsXoopsTree($xoopsDB->prefix('news_topics'), 'topic_id', 'topic_pid');
+    $xt         = new Tree($xoopsDB->prefix('news_topics'), 'topic_id', 'topic_pid');
     $topics_arr = $xt->getChildTreeArray(0, 'topic_title');
     $size       = count($options);
     foreach ($topics_arr as $onetopic) {

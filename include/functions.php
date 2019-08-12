@@ -15,7 +15,7 @@
 function latestnews_checkmodule($checkmodule = 'news')
 {
     $retval = false;
-    /** @var XoopsModuleHandler $moduleHandler */
+    /** @var \XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
     $module        = $moduleHandler->getByDirname($checkmodule);
 

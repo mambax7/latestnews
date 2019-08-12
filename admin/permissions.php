@@ -16,7 +16,6 @@
  * @link            https://xoops.org/
  * @since           0.73
  */
-
 require_once __DIR__ . '/admin_header.php';
 
 xoops_cp_header();
@@ -31,7 +30,7 @@ $permissionName        = basename(dirname(__DIR__));
 $permissionDescription = _AM_LATESTNEWS_PERMISSIONS_DSC;
 $global_perms_array    = [
     '1' => _AM_LATESTNEWS_ACTIVERIGHTS,
-    '2' => _AM_LATESTNEWS_ACCESSRIGHTS
+    '2' => _AM_LATESTNEWS_ACCESSRIGHTS,
 ];
 
 $permissionsForm = new \XoopsGroupPermForm($formTitle, $moduleId, $permissionName, $permissionDescription, 'admin/permissions.php');

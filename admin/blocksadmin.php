@@ -16,7 +16,6 @@
  * @license         GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
  * @since           1.0.6
  */
-
 require_once __DIR__ . '/admin_header.php';
 if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit(_AM_XTUBE_ERROR403);
@@ -26,11 +25,11 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
     $op = 'list';
     if (isset($_POST)) {
         foreach ($_POST as $k => $v) {
-            $$k = $v;
+            ${$k} = $v;
         }
     }
 
-    if (isset($_GET['op'])) {
+    if (\Xmf\Request::hasVar('op', 'GET')) {
         if ('edit' === $_GET['op'] || 'delete' === $_GET['op'] || 'delete_ok' === $_GET['op'] || 'clone' === $_GET['op']
             || 'edit' === $_GET['op']) {
             $op  = $_GET['op'];
@@ -38,9 +37,6 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         }
     }
 
-    /**
-     *
-     */
     function listBlocks()
     {
         global $xoopsUser, $xoopsConfig, $xoopsModule, $pathIcon16;
@@ -50,12 +46,12 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         xoops_loadLanguage('admin/blocksadmin', 'system');
         xoops_loadLanguage('admin/groups', 'system');
 
-        /** @var XoopsModuleHandler $moduleHandler */
-        $moduleHandler     = xoops_getHandler('module');
-        $memberHandler     = xoops_getHandler('member');
+        /** @var \XoopsModuleHandler $moduleHandler */
+        $moduleHandler    = xoops_getHandler('module');
+        $memberHandler    = xoops_getHandler('member');
         $grouppermHandler = xoops_getHandler('groupperm');
-        $groups            = $memberHandler->getGroups();
-        $criteria          = new \CriteriaCompo(new \Criteria('hasmain', 1));
+        $groups           = $memberHandler->getGroups();
+        $criteria         = new \CriteriaCompo(new \Criteria('hasmain', 1));
         $criteria->add(new \Criteria('isactive', 1));
         $module_list     = $moduleHandler->getList($criteria);
         $module_list[-1] = _AM_SYSTEM_BLOCKS_TOPPAGE;
@@ -105,10 +101,10 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             '86400'   => _DAY,
             '259200'  => sprintf(_DAYS, 3),
             '604800'  => _WEEK,
-            '2592000' => _MONTH
+            '2592000' => _MONTH,
         ];
         foreach ($block_arr as $i) {
-            $groups_perms =& $grouppermHandler->getGroupIds('block_read', $i->getVar('bid'));
+            $groups_perms = $grouppermHandler->getGroupIds('block_read', $i->getVar('bid'));
             $sql          = 'SELECT module_id FROM ' . $db->prefix('block_module_link') . ' WHERE block_id=' . $i->getVar('bid');
             $result       = $db->query($sql);
             $modules      = [];
@@ -306,10 +302,10 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             'bid'        => $myblock->getVar('bid'),
             'edit_form'  => $myblock->getOptions(),
             'template'   => $myblock->getVar('template'),
-            'options'    => $myblock->getVar('options')
+            'options'    => $myblock->getVar('options'),
         ];
         echo '<a href="blocksadmin.php">' . _AM_BADMIN . '</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;' . _AM_SYSTEM_BLOCKS_CLONEBLOCK . '<br><br>';
-        include __DIR__ . '/blockform.php';
+        require_once __DIR__ . '/blockform.php';
         $form->display();
         //        xoops_cp_footer();
         require_once __DIR__ . '/admin_footer.php';
@@ -333,7 +329,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         xoops_loadLanguage('admin/groups', 'system');
 
         $block = new \XoopsBlock($bid);
-        $clone =& $block->xoopsClone();
+        $clone = &$block->xoopsClone();
         if (empty($bmodule)) {
             xoops_cp_header();
             xoops_error(sprintf(_AM_NOTSELNG, _AM_VISIBLEIN));
@@ -365,9 +361,9 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         }
         if ('' != $clone->getVar('template')) {
             $tplfileHandler = xoops_getHandler('tplfile');
-            $btemplate      =& $tplfileHandler->find($GLOBALS['xoopsConfig']['template_set'], 'block', $bid);
+            $btemplate      = $tplfileHandler->find($GLOBALS['xoopsConfig']['template_set'], 'block', $bid);
             if (count($btemplate) > 0) {
-                $tplclone =& $btemplate[0]->xoopsClone();
+                $tplclone = &$btemplate[0]->xoopsClone();
                 $tplclone->setVar('tpl_id', 0);
                 $tplclone->setVar('tpl_refid', $newid);
                 $tplfileHandler->insert($tplclone);
@@ -378,7 +374,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             $sql = 'INSERT INTO ' . $db->prefix('block_module_link') . ' (block_id, module_id) VALUES (' . $newid . ', ' . $bmid . ')';
             $db->query($sql);
         }
-        $groups =& $xoopsUser->getGroups();
+        $groups = &$xoopsUser->getGroups();
         $count  = count($groups);
         for ($i = 0; $i < $count; ++$i) {
             $sql = 'INSERT INTO ' . $db->prefix('group_permission') . ' (gperm_groupid, gperm_itemid, gperm_modid, gperm_name) VALUES (' . $groups[$i] . ', ' . $newid . ", 1, 'block_read')";
@@ -444,10 +440,10 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             'bid'        => $myblock->getVar('bid'),
             'edit_form'  => $myblock->getOptions(),
             'template'   => $myblock->getVar('template'),
-            'options'    => $myblock->getVar('options')
+            'options'    => $myblock->getVar('options'),
         ];
         echo '<a href="blocksadmin.php">' . _AM_BADMIN . '</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;' . _AM_SYSTEM_BLOCKS_EDITBLOCK . '<br><br>';
-        include __DIR__ . '/blockform.php';
+        require_once __DIR__ . '/blockform.php';
         $form->display();
         //        xoops_cp_footer();
         require_once __DIR__ . '/admin_footer.php';

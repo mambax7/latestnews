@@ -1,8 +1,6 @@
-<?php namespace XoopsModules\Latestnews;
+<?php
 
-use Xmf\Request;
-use XoopsModules\Latestnews;
-use XoopsModules\Latestnews\Common;
+namespace XoopsModules\Latestnews;
 
 /**
  * Class Utility

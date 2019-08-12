@@ -8,7 +8,7 @@ define('_MI_LATESTNEWS_INF', 'Latest News Block');
 //0.73
 //Help
 define('_MI_LATESTNEWS_DIRNAME', basename(dirname(dirname(__DIR__))));
-define('_MI_LATESTNEWS_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+define('_MI_LATESTNEWS_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_LATESTNEWS_BACK_2_ADMIN', 'Back to Administration of ');
 define('_MI_LATESTNEWS_OVERVIEW', 'Overview');
 

@@ -3,7 +3,6 @@
  * @Language   : Portuguesebr
  * @Translators: GibaPhp /
  */
-
 define('_MB_LATESTNEWS_INF', 'Bloco Últimas Notícias');
 define('_MB_LATESTNEWS_POSTER', 'Escrito por ');
 define('_MB_SP', ' : ');

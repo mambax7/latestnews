@@ -1,4 +1,7 @@
 <?php
+
+namespace XoopsModules\Latestnews;
+
 // ######################################################################
 // #                                                                    #
 // # Latest News block by Mowaffak ( www.arabxoops.com )                #
@@ -14,8 +17,7 @@
 
 use XoopsModules\Latestnews;
 
-
-class LatestNewsStory extends NewsStory
+class LatestStory extends \NewsStory
 {
     public function __construct($id = -1)
     {
@@ -61,9 +63,8 @@ class LatestNewsStory extends NewsStory
                     $topics = news_MygetItemIds('news_view');
                     if (!in_array($topic, $topics)) {
                         return null;
-                    } else {
-                        $sql .= ' AND s.topicid=' . (int)$topic . ' AND (s.ihome=1 OR s.ihome=0)';
                     }
+                    $sql .= ' AND s.topicid=' . (int)$topic . ' AND (s.ihome=1 OR s.ihome=0)';
                 } else {
                     $sql .= ' AND s.topicid=' . (int)$topic . ' AND (s.ihome=1 OR s.ihome=0)';
                 }
@@ -100,7 +101,7 @@ class LatestNewsStory extends NewsStory
 
         while (false !== ($myrow = $db->fetchArray($result))) {
             if ($asobject) {
-                $ret[] = new LatestNewsStory($myrow);
+                $ret[] = new self($myrow);
             } else {
                 $ret[$myrow['storyid']] = $myts->htmlSpecialChars($myrow['title']);
             }
@@ -135,7 +136,7 @@ class LatestNewsStory extends NewsStory
                 $story['poster'] = $xoopsConfig['anonymous'];
             }
         }
-        if ('' !== ($helper->getConfig('ratenews'))) {
+        if ('' !== $helper->getConfig('ratenews')) {
             $story['rating'] = number_format($this->rating(), 2);
             if (1 == $this->votes) {
                 $story['votes'] = _NW_ONEVOTE;
@@ -154,8 +155,8 @@ class LatestNewsStory extends NewsStory
         $story['text'] = $this->hometext();
         $story['text'] = str_replace('[summary]', $auto_summary, $story['text']);
 
-        $introcount = strlen($story['text']);
-        $fullcount  = strlen($this->bodytext());
+        $introcount = mb_strlen($story['text']);
+        $fullcount  = mb_strlen($this->bodytext());
         $totalcount = $introcount + $fullcount;
 
         $morelink = '';
@@ -163,11 +164,11 @@ class LatestNewsStory extends NewsStory
             $morelink .= '<a href="' . XOOPS_URL . '/modules/news/article.php?storyid=' . $this->storyid() . '';
             $morelink .= '">' . _NW_READMORE . '</a>';
             $morelink .= ' | ' . sprintf(_NW_BYTESMORE, $totalcount);
-            if ('' !== ($helper->getConfig('com_rule')) && XOOPS_COMMENT_APPROVENONE != $helper->getConfig('com_rule')) {
+            if ('' !== $helper->getConfig('com_rule') && XOOPS_COMMENT_APPROVENONE != $helper->getConfig('com_rule')) {
                 $morelink .= ' | ';
             }
         }
-        if ('' !== ($helper->getConfig('com_rule')) && XOOPS_COMMENT_APPROVENONE != $helper->getConfig('com_rule')) {
+        if ('' !== $helper->getConfig('com_rule') && XOOPS_COMMENT_APPROVENONE != $helper->getConfig('com_rule')) {
             $ccount    = $this->comments();
             $morelink  .= '<a href="' . XOOPS_URL . '/modules/news/article.php?storyid=' . $this->storyid() . '';
             $morelink2 = '<a href="' . XOOPS_URL . '/modules/news/article.php?storyid=' . $this->storyid() . '';
@@ -201,7 +202,7 @@ class LatestNewsStory extends NewsStory
             $approveprivilege = 1;
         }
 
-        if ('' !== ($helper->getConfig('authoredit')) && 1 == $helper->getConfig('authoredit')
+        if ('' !== $helper->getConfig('authoredit') && 1 == $helper->getConfig('authoredit')
             && (is_object($xoopsUser)
                 && $xoopsUser->getVar('uid') == $this->uid())) {
             $approveprivilege = 1;
@@ -238,21 +239,20 @@ class LatestNewsStory extends NewsStory
     public function latest_news_is_admin_group()
     {
         global $xoopsUser;
-        /** @var XoopsModuleHandler $moduleHandler */
+        /** @var \XoopsModuleHandler $moduleHandler */
         $moduleHandler = xoops_getHandler('module');
         $xoopsModule   = $moduleHandler->getByDirname('news');
         if (is_object($xoopsUser)) {
             if (in_array('1', $xoopsUser->getGroups())) {
                 return true;
-            } else {
-                if ($xoopsUser->isAdmin($xoopsModule->mid())) {
-                    return true;
-                } else {
-                    return false;
-                }
             }
-        } else {
+            if ($xoopsUser->isAdmin($xoopsModule->mid())) {
+                return true;
+            }
+
             return false;
         }
+
+        return false;
     }
 }

@@ -1,4 +1,7 @@
 <?php
+
+namespace XoopsModules\Latestnews;
+
 /**
  * XOOPS tree handler
  *
@@ -28,7 +31,7 @@
  * @subpackage XoopsTree
  * @access     public
  */
-class LatestnewsXoopsTree
+class Tree
 {
     public $table; //table with parent-child structure
     public $id; //name of unique id for records in table $table
@@ -79,7 +82,7 @@ class LatestnewsXoopsTree
         if (0 == $count) {
             return $idarray;
         }
-        while (false !== (list($id) = $this->db->fetchRow($result))) {
+        while (list($id) = $this->db->fetchRow($result)) {
             array_push($idarray, $id);
         }
 
@@ -99,7 +102,7 @@ class LatestnewsXoopsTree
         if (0 == $count) {
             return $idarray;
         }
-        while (false !== (list($r_id) = $this->db->fetchRow($result))) {
+        while (list($r_id) = $this->db->fetchRow($result)) {
             array_push($idarray, $r_id);
             $idarray = $this->getAllChildId($r_id, $order, $idarray);
         }
@@ -137,7 +140,7 @@ class LatestnewsXoopsTree
         }
         list($parentid, $name) = $this->db->fetchRow($result);
         $myts = \MyTextSanitizer::getInstance();
-        $name = $myts->htmlspecialchars($name);
+        $name = $myts->htmlSpecialChars($name);
         $path = '/' . $name . $path . '';
         if (0 == $parentid) {
             return $path;
@@ -169,7 +172,7 @@ class LatestnewsXoopsTree
         if ($none) {
             echo "<option value='0'>----</option>\n";
         }
-        while (false !== (list($catid, $name) = $this->db->fetchRow($result))) {
+        while (list($catid, $name) = $this->db->fetchRow($result)) {
             $sel = '';
             if ($catid == $preset_id) {
                 $sel = ' selected';
@@ -179,7 +182,7 @@ class LatestnewsXoopsTree
             $arr = $this->getChildTreeArray($catid, $order);
             foreach ($arr as $option) {
                 $option['prefix'] = str_replace('.', '--', $option['prefix']);
-                $catpath          = $option['prefix'] . '&nbsp;' . $myts->htmlspecialchars($option[$title]);
+                $catpath          = $option['prefix'] . '&nbsp;' . $myts->htmlSpecialChars($option[$title]);
                 if ($option[$this->id] == $preset_id) {
                     $sel = ' selected';
                 }
@@ -202,7 +205,7 @@ class LatestnewsXoopsTree
         }
         list($parentid, $name) = $this->db->fetchRow($result);
         $myts = \MyTextSanitizer::getInstance();
-        $name = $myts->htmlspecialchars($name);
+        $name = $myts->htmlSpecialChars($name);
         $path = "<a href='" . $funcURL . '&amp;' . $this->id . '=' . $sel_id . "'>" . $name . '</a>' . $path . '';
         if (0 == $parentid) {
             return $path;
