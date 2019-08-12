@@ -1,7 +1,15 @@
-0.73 Beta 2017-07-20
+0.73 Beta 2019-08-12
 ----------------------
 - moved all images, CSS, and JS files to /assets (mamba)
 - renamed .html Smarty templates to .tpl (mamba)
+- removed additional pass-by-references instances
+- fixed _AM_ defines (added / deleted / corrected)
+- in ./admin/blocksadmin.php removed unnecessary check for $xoopsUser->isAdmin()
+- default language to 'english' if language file(s) not found in ./admin/blocksadmin.php
+- removed functions in ./blocksadmin.php and put code 'in-line'
+- very minor block template cleanup
+
+- @todo: replace HTML marquee tag using CSS translate[X|Y] or keyframes
 
 ver 0.73 Beta 1
 ----------------------

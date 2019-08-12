@@ -1,9 +1,9 @@
 <{if $block.latestnews_scroll }>
-<marquee behavior='scroll' align='center' direction='up' height='<{$block.scrollheight}>' scrollamount='3'
-         scrolldelay='<{$block.scrollspeed}>' onmouseover='this.stop()' onmouseout='this.start()'>
-    <{/if}>
+<marquee behavior="scroll" class="center" direction="up" height="<{$block.scrollheight}>" scrollamount="3"
+         scrolldelay="<{$block.scrollspeed}>" onmouseover="this.stop()" onmouseout="this.start()">
+<{/if}>
 
-    <table width='100%' border='0'>
+    <table class="width100 bnone">
         <tr>
             <{section name=i loop=$block.columns}>
                 <td width="<{$block.spec.columnwidth}>%">
@@ -18,7 +18,7 @@
                             </div>
                             <div class="latestnews">
                                 <div class="itemText"><{$news.text}></div>
-                                <div style="clear:both;"></div>
+                                <div class="clear"></div>
                             </div>
                             <div class="itemFoot">
                                 <span class="itemPermaLink"><{$news.more}><{$news.comment}><{$news.print}><{$news.pdf}><{$news.email}></span>
@@ -34,4 +34,4 @@
 </marquee>
 <{/if}>
 
-<div align="right"><{$block.morelink}><{$block.topiclink}><{$block.archivelink}><{$block.submitlink}></div>
+<div class="right"><{$block.morelink}><{$block.topiclink}><{$block.archivelink}><{$block.submitlink}></div>
