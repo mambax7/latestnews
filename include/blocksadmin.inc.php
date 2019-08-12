@@ -97,13 +97,13 @@ if (isset($_POST['previewblock'])) {
     $block['bid'] = $bid;
 
     if ('clone_ok' === $op) {
-        $block['form_title']    = _AM_CLONEBLOCK;
+        $block['form_title']    = _AM_LATESTNEWS_CLONEBLOCK;
         $block['submit_button'] = _CLONE;
         $myblock                = new XoopsBlock();
         $myblock->setVar('block_type', 'C');
     } else {
         $op                     = 'update';
-        $block['form_title']    = _AM_EDITBLOCK;
+        $block['form_title']    = _AM_LATESTNEWS_EDITBLOCK;
         $block['submit_button'] = _SUBMIT;
         $myblock                = new XoopsBlock($bid);
         $block['name']          = $myblock->getVar('name');
@@ -121,11 +121,11 @@ if (isset($_POST['previewblock'])) {
     $block['visible']   = $bvisible;
     $block['title']     = $myblock->getVar('title', 'E');
     $block['content']   = $myblock->getVar('content', 'n');
-    $block['modules']   =& $bmodule;
+    $block['modules']   = $bmodule;
     $block['ctype']     = isset($bctype) ? $bctype : $myblock->getVar('c_type');
     $block['is_custom'] = true;
     $block['cachetime'] = (int)$bcachetime;
-    echo '<a href="myblocksadmin.php">' . _AM_BADMIN . '</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;' . $block['form_title'] . '<br><br>';
+    echo '<a href="myblocksadmin.php">' . _AM_LATESTNEWS_BADMIN . '</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;' . $block['form_title'] . '<br><br>';
     include __DIR__ . '/../admin/myblockform.php'; //GIJ
     //    $xoopsGTicket->addTicketXoopsFormElement($form, __LINE__, 1800, 'myblocksadmin'); //GIJ
     $form->display();
@@ -272,13 +272,11 @@ if ('delete' === $op) {
     // delete_block($bid); GIJ imported from blocksadmin.php
     $myblock = new XoopsBlock($bid);
     if ('S' === $myblock->getVar('block_type')) {
-        $message = _AM_SYSTEMCANT;
-        redirect_header('admin.php?fct=blocksadmin', 4, $message);
+        redirect_header('admin.php?fct=blocksadmin', 4, _AM_LATESTNEWS_ERROR_SYSTEMCANT);
     } elseif ('M' === $myblock->getVar('block_type')) {
-        $message = _AM_MODULECANT;
-        redirect_header('admin.php?fct=blocksadmin', 4, $message);
+        redirect_header('admin.php?fct=blocksadmin', 4, _AM_LATESTNEWS_ERROR_MODULECANT);
     } else {
-        xoops_confirm(['fct' => 'blocksadmin', 'op' => 'delete_ok', 'bid' => $myblock->getVar('bid')], 'admin.php', sprintf(_AM_RUSUREDEL, $myblock->getVar('title')));
+        xoops_confirm(['fct' => 'blocksadmin', 'op' => 'delete_ok', 'bid' => $myblock->getVar('bid')], 'admin.php', sprintf(_AM_LATESTNEWS_RUSUREDEL, $myblock->getVar('title')));
     }
     // end of delete_block() GIJ
     xoops_cp_footer();
@@ -318,7 +316,7 @@ if ('edit' === $op) {
         'submit_button' => _SUBMIT
     ];
 
-    echo '<a href="myblocksadmin.php">' . _AM_BADMIN . '</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;' . _AM_EDITBLOCK . '<br><br>';
+    echo '<a href="myblocksadmin.php">' . _AM_LATESTNEWS_BADMIN . '</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;' . _AM_EDITBLOCK . '<br><br>';
     include __DIR__ . '/../admin/myblockform.php'; //GIJ
     //    $xoopsGTicket->addTicketXoopsFormElement($form, __LINE__, 1800, 'myblocksadmin'); //GIJ
     $form->display();
@@ -340,7 +338,7 @@ if ('clone' === $op) {
     }
     $is_custom = ('C' === $myblock->getVar('block_type') || 'E' === $myblock->getVar('block_type')) ? true : false;
     $block     = [
-        'form_title'    => _AM_CLONEBLOCK,
+        'form_title'    => _AM_LATESTNEWS_CLONEBLOCK,
         'name'          => $myblock->getVar('name'),
         'side'          => $myblock->getVar('side'),
         'weight'        => $myblock->getVar('weight'),
@@ -358,7 +356,7 @@ if ('clone' === $op) {
         'options'       => $myblock->getVar('options'),
         'submit_button' => _CLONE
     ];
-    echo '<a href="myblocksadmin.php">' . _AM_BADMIN . '</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;' . _AM_CLONEBLOCK . '<br><br>';
+    echo '<a href="myblocksadmin.php">' . _AM_LATESTNEWS_BADMIN . '</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;' . _AM_LATESTNEWS_CLONEBLOCK . '<br><br>';
     include __DIR__ . '/../admin/myblockform.php';
     //    $xoopsGTicket->addTicketXoopsFormElement($form, __LINE__, 1800, 'myblocksadmin'); //GIJ
     $form->display();
@@ -389,7 +387,7 @@ if ('clone_ok' === $op) {
     }
 
     // for backward compatibility
-    // $cblock =& $block->clone(); or $cblock =& $block->xoopsClone();
+    // $cblock = $block->clone(); or $cblock = $block->xoopsClone();
     $cblock = new XoopsBlock();
     foreach ($block->vars as $k => $v) {
         $cblock->assignVar($k, $v['value']);
@@ -480,16 +478,16 @@ function myblocksadmin_update_block(
     if ('C' === $myblock->getVar('block_type')) {
         switch ($myblock->getVar('c_type')) {
             case 'H':
-                $name = _AM_CUSTOMHTML;
+                $name = _AM_SYSTEM_BLOCKS_HTML;
                 break;
             case 'P':
-                $name = _AM_CUSTOMPHP;
+                $name = _AM_SYSTEM_BLOCKS_PHP;
                 break;
             case 'S':
-                $name = _AM_CUSTOMSMILE;
+                $name = _AM_SYSTEM_BLOCKS_AFWSMILE;
                 break;
             default:
-                $name = _AM_CUSTOMNOSMILE;
+                $name = _AM_SYSTEM_BLOCKS_AFNOSMILE;
                 break;
         }
         $myblock->setVar('name', $name);
@@ -547,7 +545,7 @@ function myblocksadmin_update_blockinstance(
     $blockHandler    = xoops_getHandler('block');
     if ($id > 0) {
         // update
-        $instance =& $instanceHandler->get($id);
+        $instance = $instanceHandler->get($id);
         if ($bside >= 0) {
             $instance->setVar('side', $bside);
         }
