@@ -10,7 +10,8 @@
  * @link            https://www.xoops.org
  * @license         GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
  */
-require_once __DIR__ . '/admin_header.php';
+require __DIR__ . '/admin_header.php';
+
 if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit(_AM_LATESTNEWS_RESTRICTED);
 }
@@ -37,6 +38,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
     {
         global $xoopsUser, $xoopsConfig, $xoopsModule, $pathIcon16;
         require_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
+        require dirname(__DIR__) . '/include/common.php';
         $db = \XoopsDatabaseFactory::getDatabaseConnection();
         xoops_loadLanguage('admin', 'system');
         xoops_loadLanguage('admin/blocksadmin', 'system');
@@ -228,12 +230,10 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
 
             // Actions
 
-            echo "<td class='$class' align='center'><a href='blocksadmin.php?op=edit&amp;bid=" . $i->getVar('bid') . "'><img src=" . $pathIcon16 . '/edit.png' . " alt='" . _EDIT . "' title='" . _EDIT . "'>
-                 </a> <a href='blocksadmin.php?op=clone&amp;bid=" . $i->getVar('bid') . "'><img src=" . $pathIcon16 . '/editcopy.png' . " alt='" . _CLONE . "' title='" . _CLONE . "'>
-                 </a>";
+            echo "<td class='$class' align='center'><a href='blocksadmin.php?op=edit&amp;bid=" . $i->getVar('bid') . "'>" . $icons['edit'] . "</a> 
+            <a href='blocksadmin.php?op=clone&amp;bid=" . $i->getVar('bid') . "'>" . $icons['clone'] . "</a>";
             if ('S' !== $i->getVar('block_type') && 'M' !== $i->getVar('block_type')) {
-                echo "&nbsp;<a href='" . XOOPS_URL . '/modules/system/admin.php?fct=blocksadmin&amp;op=delete&amp;bid=' . $i->getVar('bid') . "'><img src=" . $pathIcon16 . '/delete.png' . " alt='" . _DELETE . "' title='" . _DELETE . "'>
-                     </a>";
+                echo "&nbsp;<a href='" . XOOPS_URL . '/modules/system/admin.php?fct=blocksadmin&amp;op=delete&amp;bid=' . $i->getVar('bid') . "'>" . $icons['delete'] . "</a>";
             }
             echo "
             <input type='hidden' name='oldtitle[" . $i->getVar('bid') . "]' value='" . $i->getVar('title') . "'>
@@ -280,10 +280,10 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         while (false !== ($row = $db->fetchArray($result))) {
             $modules[] = (int)$row['module_id'];
         }
-        $is_custom = ('C' === $myblock->getVar('block_type') || 'E' === $myblock->getVar('block_type')) ? true : false;
+        $is_custom = ('C' === $myblock->getVar('block_type') || 'E' === $myblock->getVar('block_type'));
         $block     = [
             'title'      => $myblock->getVar('title') . ' Clone',
-            'form_title' => _AM_LATESTNEWS_BLOCKS_CLONEBLOCK,
+            'form_title' => _AM_LATESTNEWS_CLONEBLOCK,
             'name'       => $myblock->getVar('name'),
             'side'       => $myblock->getVar('side'),
             'weight'     => $myblock->getVar('weight'),
@@ -299,7 +299,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             'template'   => $myblock->getVar('template'),
             'options'    => $myblock->getVar('options'),
         ];
-        echo '<a href="blocksadmin.php">' . _AM_BADMIN . '</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;' . _AM_SYSTEM_BLOCKS_CLONEBLOCK . '<br><br>';
+        echo '<a href="blocksadmin.php">' . _AM_LATESTNEWS_BADMIN . '</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;' . _AM_SYSTEM_BLOCKS_CLONEBLOCK . '<br><br>';
         require_once __DIR__ . '/blockform.php';
         $form->display();
         //        xoops_cp_footer();
@@ -418,7 +418,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         while (false !== ($row = $db->fetchArray($result))) {
             $modules[] = (int)$row['module_id'];
         }
-        $is_custom = ('C' === $myblock->getVar('block_type') || 'E' === $myblock->getVar('block_type')) ? true : false;
+        $is_custom = ('C' === $myblock->getVar('block_type') || 'E' === $myblock->getVar('block_type'));
         $block     = [
             'title'      => $myblock->getVar('title'),
             'form_title' => _AM_SYSTEM_BLOCKS_EDITBLOCK,
@@ -437,7 +437,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             'template'   => $myblock->getVar('template'),
             'options'    => $myblock->getVar('options'),
         ];
-        echo '<a href="blocksadmin.php">' . _AM_BADMIN . '</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;' . _AM_SYSTEM_BLOCKS_EDITBLOCK . '<br><br>';
+        echo '<a href="blocksadmin.php">' . _AM_LATESTNEWS_BADMIN . '</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;' . _AM_SYSTEM_BLOCKS_EDITBLOCK . '<br><br>';
         require_once __DIR__ . '/blockform.php';
         $form->display();
         //        xoops_cp_footer();

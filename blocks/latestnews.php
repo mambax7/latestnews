@@ -13,6 +13,7 @@
 // ######################################################################
 
 use XoopsModules\Latestnews;
+use XoopsModules\News;
 
 function block_latestnews_show($options)
 {
@@ -20,12 +21,10 @@ function block_latestnews_show($options)
     $moduleHandler = xoops_getHandler('module');
     $mydir         = basename(dirname(__DIR__));
 
-    global $xoopsTpl, $xoopsUser, $xoopsConfig, $pathIcon16, $xoopsModule;
+    global $xoopsTpl, $xoopsUser, $xoopsConfig;
     require_once XOOPS_ROOT_PATH . '/modules/' . $mydir . '/include/functions.php';
 
-    $mymodule   = $moduleHandler->getByDirname($mydir);
-    $pathIcon16 = XOOPS_URL . '/' . $mymodule->getInfo('icons16root');
-    //    $pathIcon16 = $mymodule->getInfo('icons16');
+    $pathIcon16 = \Xmf\Module\Admin::iconUrl('', 16);
 
     $block = [];
 
@@ -33,21 +32,21 @@ function block_latestnews_show($options)
         return $block;
     }
 
-    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newsstory.php';
-    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.sfiles.php';
-    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newstopic.php';
-    require_once XOOPS_ROOT_PATH . '/modules/news/include/functions.php';
-    require_once XOOPS_ROOT_PATH . '/class/tree.php';
-    require_once XOOPS_ROOT_PATH . '/modules/' . $mydir . '/class/class.' . $mydir . '.php'; //Bandit-X
+//    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newsstory.php';
+//    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.sfiles.php';
+//    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newstopic.php';
+//    require_once XOOPS_ROOT_PATH . '/modules/news/include/functions.php';
+//    require_once XOOPS_ROOT_PATH . '/class/tree.php';
+//    require_once XOOPS_ROOT_PATH . '/modules/' . $mydir . '/class/class.' . $mydir . '.php'; //Bandit-X
 
     /** @var Latestnews\Helper $helper */
     $helper = Latestnews\Helper::getInstance();
     $helper->loadLanguage('admin');
 
     $myts   = \MyTextSanitizer::getInstance();
-    $sfiles = new sFiles();
+    $sfiles = new News\Files();
 
-    $dateformat = news_getmoduleoption('dateformat');
+    $dateformat = News\Utility::getModuleOption('dateformat');
     if ('' == $dateformat) {
         $dateformat = 's';
     }
@@ -74,10 +73,10 @@ function block_latestnews_show($options)
            .latestnews img { vertical-align:baseline; padding: 2px; margin: 5px}</style>' . $xoopsTpl->get_template_vars('xoops_module_header'));
 
     if (!isset($options[25])) {
-        $sarray = LatestStory::getAllPublished($limit, $selected_stories, 0, true, 0, 0, true, $options[24], false);
+        $sarray = Latestnews\LatestStory::getAllPublished($limit, $selected_stories, 0, true, 0, 0, true, $options[24], false);
     } else {
         $topics = array_slice($options, 25);
-        $sarray = LatestStory::getAllPublished($limit, $selected_stories, 0, true, $topics, 0, true, $options[24], false);
+        $sarray = Latestnews\LatestStory::getAllPublished($limit, $selected_stories, 0, true, $topics, 0, true, $options[24], false);
     }
 
     $scount  = count($sarray);
@@ -265,8 +264,8 @@ function b_latestnews_edit($options)
     $mydir = basename(dirname(__DIR__));
     global $xoopsDB;
     require_once XOOPS_ROOT_PATH . '/modules/' . $mydir . '/include/functions.php';
-    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newstopic.php';
-    require_once XOOPS_ROOT_PATH . '/modules/' . $mydir . '/class/xoopstree.php';
+//    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newstopic.php';
+//    require_once XOOPS_ROOT_PATH . '/modules/' . $mydir . '/class/xoopstree.php';
     if (!latestnews_checkmodule('news')) {
         return _MB_LATESTNEWS_NEWSNOTINST;
     }
@@ -348,7 +347,7 @@ function b_latestnews_edit($options)
     $form       .= $tabletag1 . _MB_LATESTNEWS_TOPICSDISPLAY . $tabletag2;
     $form       .= "<select name='options[]' multiple='multiple'>";
     $topics_arr = [];
-    $xt         = new Tree($xoopsDB->prefix('news_topics'), 'topic_id', 'topic_pid');
+    $xt         = new Latestnews\Tree($xoopsDB->prefix('news_topics'), 'topic_id', 'topic_pid');
     $topics_arr = $xt->getChildTreeArray(0, 'topic_title');
     $size       = count($options);
     foreach ($topics_arr as $onetopic) {

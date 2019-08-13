@@ -16,8 +16,9 @@ namespace XoopsModules\Latestnews;
 // ######################################################################
 
 use XoopsModules\Latestnews;
+use XoopsModules\News;
 
-class LatestStory extends \NewsStory
+class LatestStory extends News\NewsStory
 {
     public function __construct($id = -1)
     {
@@ -60,7 +61,7 @@ class LatestStory extends \NewsStory
 
             if (!is_array($topic)) {
                 if ($checkRight) {
-                    $topics = news_MygetItemIds('news_view');
+                    $topics = News\Utility::getMyItemIds('news_view');
                     if (!in_array($topic, $topics)) {
                         return null;
                     }
@@ -70,7 +71,7 @@ class LatestStory extends \NewsStory
                 }
             } else {
                 if ($checkRight) {
-                    $topics = news_MygetItemIds('news_view');
+                    $topics = News\Utility::getMyItemIds('news_view');
                     $topic  = array_intersect($topic, $topics);
                 }
                 if (count($topic) > 0) {
@@ -81,7 +82,7 @@ class LatestStory extends \NewsStory
             }
         } else {
             if ($checkRight) {
-                $topics = news_MygetItemIds('news_view');
+                $topics = News\Utility::getMyItemIds('news_view');
                 if (count($topics) > 0) {
                     $topics = implode(',', $topics);
                     $sql    .= ' AND s.topicid IN (' . $topics . ')';
@@ -123,7 +124,7 @@ class LatestStory extends \NewsStory
         $helper = Latestnews\Helper::getInstance();
 
         $myts                 = \MyTextSanitizer::getInstance();
-        $infotips             = news_getmoduleoption('infotips');
+        $infotips             = News\Utility::getModuleOption('infotips');
         $story                = [];
         $story['id']          = $this->storyid();
         $story['poster']      = $this->uname();
@@ -145,7 +146,7 @@ class LatestStory extends \NewsStory
             }
         }
         $story['posttimestamp']     = $this->published();
-        $story['posttime']          = formatTimestamp($story['posttimestamp'], news_getmoduleoption('dateformat'));
+        $story['posttime']          = formatTimestamp($story['posttimestamp'], News\Utility::getModuleOption('dateformat'));
         $story['topic_description'] = $myts->displayTarea($this->topic_description);
 
         $auto_summary = '';

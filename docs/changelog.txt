@@ -1,5 +1,12 @@
-0.73 Beta 2019-08-12
-----------------------
+<h5>0.74 Beta 1   [WORK IN PROGRESS - NOT RELEASED]</h5>  Dev: XOOPS 2.5.10, PHP 7.3.7
+<hr>
+- namespaces (mamba)
+- class autoloading (mamba)
+WORK IN PROGRESS
+
+
+<h5>0.73 Beta 2019-08-12</h5>
+<hr>
 - moved all images, CSS, and JS files to /assets (mamba)
 - renamed .html Smarty templates to .tpl (mamba)
 - removed additional pass-by-references instances (zyspec)
@@ -11,20 +18,23 @@
 
 - @todo: replace HTML marquee tag using CSS translate[X|Y] or keyframes
 
-ver 0.73 Beta 1
-----------------------
+
+<h5>0.73 Beta 1</h5>
+<hr>
 updated for News 1.70 database structure (mamba)
 converted to XOOPS 2.5.6 GUI (mamba)
 
-ver 0.72
-----------------------
+
+<h5>0.72</h5>
+<hr>
 Added auto height feature by set 0 in height option
 Replaced default value of featured news option to 0
 Fixed marquee mouseover
 Fixed WYSIWYG edited content bug
 
-ver 0.7
-----------------------
+
+<h5>0.7</h5>
+<hr>
 Added clone option for XOOPS 2.0.x
 Added permissions panel
 Added hide/show option for print/pdf/email icons
@@ -36,8 +46,9 @@ fixed display all articles with no topic selected ( by bandit-x )
 fixed css conflict when select news module as main module
 Replace edit and delete links with icons
 
-Ver 0.6
-----------------------
+
+<h5>0.6</h5>
+<hr>
 Fixed bug: block not working if outside a news module page ( by bandit-x and trabis )
 Added a check to prevent errors if the news module is not installed and active ( by trabis )
 Added option multiselect topics ( by trabis )
@@ -45,35 +56,40 @@ Added option 'sort by' ( by trabis )
 Added limit to "More News" link ( by young )
 Added danish translation ( by anderssk )
 
-Ver 0.5 ( First Public Release )
-----------------------
+
+<h5>0.5 ( First Public Release )</h5>
+<hr>
 Added option to truncate text without cutting the last word ( by trabis )
 Added image position option
 Refactored blocks language constants
 Fixed css bug ( by taimur )
 Fixed many bugs ( by trabis and bandit-x )
 
-Ver 0.4
-----------------------
+
+<h5>0.4</h5>
+<hr>
 Added block admin page ( by bandit-x )
 Added admin links for edit and delete
 Added read counter with it's show/hide option
 Fixed date function ( by bandit-x )
 Fixed comments counter
 
-Ver 0.3
-----------------------
+
+<h5>0.3</h5>
+<hr>
 Added number of columns option
 Added hide/show option for topic title
 Added autothumbnail with image width/height options
 Added border and border color options
 
-Ver 0.2
-----------------------
+
+<h5>0.2</h5>
+<hr>
 Added columns to display news list ( by bandit-x )
 Added hide/show options for posted by, author and date
 Added hide/show option for comments
 
-Ver 0.1
-----------------------
+
+<h5>0.1</h5>
+<hr>
 Initial release based on last article block

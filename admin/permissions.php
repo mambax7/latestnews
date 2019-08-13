@@ -17,7 +17,7 @@
  * @since           0.73
  */
 require_once __DIR__ . '/admin_header.php';
-require_once XOOPS_ROOT_PATH . '/class/xoopsform/xoopsgrouppermform.php';
+require_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 
 xoops_cp_header();
 

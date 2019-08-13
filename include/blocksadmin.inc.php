@@ -189,7 +189,7 @@ if ('order2' === $op) {
     }
 
     $query4redirect = '?dirname=' . urlencode(strip_tags(mb_substr($_POST['query4redirect'], 9)));
-    redirect_header("myblocksadmin.php$query4redirect", 1, _MD_AM_LATESTNEWS_UPDATE_SUCCESS);
+    redirect_header("myblocksadmin.php$query4redirect", 1, _AM_LATESTNEWS_UPDATE_SUCCESS);
 }
 
 if ('update' === $op) {
@@ -542,7 +542,7 @@ function myblocksadmin_update_blockinstance(
             $GLOBALS['xoopsDB']->query('INSERT INTO ' . $GLOBALS['xoopsDB']->prefix('block_module_link') . ' VALUES (' . $instance->getVar('instanceid') . ', ' . (int)$mid . ', ' . (int)$pageid . ')');
         }
 
-        return _MD_AM_LATESTNEWS_UPDATE_SUCCESS;
+        return _AM_LATESTNEWS_UPDATE_SUCCESS;
     }
 
     return 'Failed update of block instance. ID:' . $id;

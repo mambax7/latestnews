@@ -28,7 +28,7 @@ if (empty($fct)) {
 //}
 //include "../../../mainfile.php";
 // include "../../mainfile.php"; GIJ
-//require_once XOOPS_ROOT_PATH."/include/cp_functions.php";
+//require XOOPS_ROOT_PATH."/include/cp_functions.php";
 require_once __DIR__ . '/header.php';
 require_once XOOPS_ROOT_PATH . '/kernel/module.php';
 //require_once  dirname(__DIR__) . '/include/gtickets.php';// GIJ
@@ -54,14 +54,14 @@ if (0 != $admintest) {
             xoops_loadLanguage('admin', 'system');
             xoops_loadLanguage('admin/' . $fct, 'system');
 
-            require_once XOOPS_ROOT_PATH . '/modules/system/admin/' . $fct . '/xoops_version.php';
-            $syspermHandler = xoops_getHandler('groupperm');
+            require XOOPS_ROOT_PATH . '/modules/system/admin/' . $fct . '/xoops_version.php';
+            $grouppermHandler = xoops_getHandler('groupperm');
             $category       = !empty($modversion['category']) ? (int)$modversion['category'] : 0;
             unset($modversion);
             if ($category > 0) {
                 $groups = $xoopsUser->getGroups();
                 if (in_array(XOOPS_GROUP_ADMIN, $groups)
-                    || false !== $syspermHandler->checkRight('system_admin', $category, $groups, $xoopsModule->getVar('mid'))) {
+                    || false !== $grouppermHandler->checkRight('system_admin', $category, $groups, $xoopsModule->getVar('mid'))) {
                     //                  if (file_exists(XOOPS_ROOT_PATH."/modules/system/admin/".$fct."/main.php")) {
                     //                      require_once XOOPS_ROOT_PATH."/modules/system/admin/".$fct."/main.php"; GIJ
                     if (file_exists("../include/{$fct}.inc.php")) {
@@ -98,8 +98,8 @@ if (false !== $error) {
     $groups = $xoopsUser->getGroups();
     $all_ok = false;
     if (!in_array(XOOPS_GROUP_ADMIN, $groups)) {
-        $syspermHandler = xoops_getHandler('groupperm');
-        $ok_syscats     = $syspermHandler->getItemIds('system_admin', $groups);
+        $grouppermHandler = xoops_getHandler('groupperm');
+        $ok_syscats     = $grouppermHandler->getItemIds('system_admin', $groups);
     } else {
         $all_ok = true;
     }
