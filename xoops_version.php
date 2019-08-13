@@ -17,7 +17,7 @@ require_once __DIR__ . '/preloads/autoloader.php';
 
 $modversion['version']       = '0.73';
 $modversion['module_status'] = 'Beta 2';
-$modversion['release_date']  = '2017/07/20';
+$modversion['release_date']  = '2019/08/12';
 $modversion['name']          = _MI_LATESTNEWS_BLOCK;
 $modversion['description']   = _MI_LATESTNEWS_BLOCKS_DESC;
 $modversion['credits']       = 'Original version Darren Poulton<br>paladin@intaleather.com.au<br>http://paladin.intaleather.com.au/<br>Ported by: Sylvain B. (sylvain@123rando.com)<br>Altered version SUIN<br>http://tms.s10.xrea.com:8080/';

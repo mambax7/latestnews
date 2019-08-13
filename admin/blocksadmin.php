@@ -1,28 +1,23 @@
 <?php
 /**
- * Module: XoopsTube
- *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
  * which is considered copyrighted (c) material of the original comment or credit authors.
  *
- * PHP version 5
- *
  * @category        Module
- * @package         Xoopstube
- * @author          Fernando Santos (topet05), fernando@mastop.com.br
- * @copyright       Mastop InfoDigital (c) 2003-2007
- * @link            http://www.mastop.com.br
+ * @author          XOOPS Development Team
+ * @copyright       XOOPS Project
+ * @link            https://www.xoops.org
  * @license         GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
- * @since           1.0.6
  */
 require_once __DIR__ . '/admin_header.php';
 if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
-    exit(_AM_XTUBE_ERROR403);
+    exit(_AM_LATESTNEWS_RESTRICTED);
 }
 if ($xoopsUser->isAdmin($xoopsModule->mid())) {
     require_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
     $op = 'list';
+//@todo replace this to only get 'known' vars from POST
     if (isset($_POST)) {
         foreach ($_POST as $k => $v) {
             ${$k} = $v;
@@ -30,6 +25,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
     }
 
     if (\Xmf\Request::hasVar('op', 'GET')) {
+    //@todo fix 'delete_ok' and 'clone' should come from POST, not GET
         if ('edit' === $_GET['op'] || 'delete' === $_GET['op'] || 'delete_ok' === $_GET['op'] || 'clone' === $_GET['op']
             || 'edit' === $_GET['op']) {
             $op  = $_GET['op'];
@@ -45,7 +41,6 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         xoops_loadLanguage('admin', 'system');
         xoops_loadLanguage('admin/blocksadmin', 'system');
         xoops_loadLanguage('admin/groups', 'system');
-
         /** @var \XoopsModuleHandler $moduleHandler */
         $moduleHandler    = xoops_getHandler('module');
         $memberHandler    = xoops_getHandler('member');
@@ -288,7 +283,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         $is_custom = ('C' === $myblock->getVar('block_type') || 'E' === $myblock->getVar('block_type')) ? true : false;
         $block     = [
             'title'      => $myblock->getVar('title') . ' Clone',
-            'form_title' => _AM_XTUBE_BLOCKS_CLONEBLOCK,
+            'form_title' => _AM_LATESTNEWS_BLOCKS_CLONEBLOCK,
             'name'       => $myblock->getVar('name'),
             'side'       => $myblock->getVar('side'),
             'weight'     => $myblock->getVar('weight'),
@@ -391,7 +386,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
      * @param $side
      * @param $bcachetime
      */
-    function xtubeSetOrder($bid, $title, $weight, $visible, $side, $bcachetime)
+    function setOrder($bid, $title, $weight, $visible, $side, $bcachetime)
     {
         $myblock = new \XoopsBlock($bid);
         $myblock->setVar('title', $title);
@@ -402,7 +397,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         $myblock->store();
     }
 
-    function xtubeEditBlock($bid)
+    function editBlock($bid)
     {
         require_once __DIR__ . '/admin_header.php';
         //require_once __DIR__ . '/admin_header.php';
@@ -450,7 +445,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         exit();
     }
 
-    function xtubeUpdateBlock($bid, $btitle, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $boptions, $groups)
+    function updateBlock($bid, $btitle, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $boptions, $groups)
     {
         $myblock = new \XoopsBlock($bid);
         $myblock->setVar('title', $btitle);
@@ -506,7 +501,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             if ($oldtitle[$i] != $title[$i] || $oldweight[$i] != $weight[$i] || $oldvisible[$i] != $visible[$i]
                 || $oldside[$i] != $side[$i]
                 || $oldbcachetime[$i] != $bcachetime[$i]) {
-                xtubeSetOrder($bid[$i], $title[$i], $weight[$i], $visible[$i], $side[$i], $bcachetime[$i], $bmodule[$i]);
+                setOrder($bid[$i], $title[$i], $weight[$i], $visible[$i], $side[$i], $bcachetime[$i], $bmodule[$i]);
             }
             if (!empty($bmodule[$i]) && count($bmodule[$i]) > 0) {
                 $sql = sprintf('DELETE FROM `%s` WHERE block_id = %u', $xoopsDB->prefix('block_module_link'), $bid[$i]);
@@ -537,16 +532,16 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
     }
 
     if ('edit' === $op) {
-        xtubeEditBlock($bid);
+        editBlock($bid);
     }
 
     if ('edit_ok' === $op) {
-        xtubeUpdateBlock($bid, $btitle, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $options, $groups);
+        updateBlock($bid, $btitle, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $options, $groups);
     }
 
     if ('clone_ok' === $op) {
         isBlockCloned($bid, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $options);
     }
 } else {
-    echo _AM_XTUBE_ERROR403;
+    echo _AM_LATESTNEWS_RESTRICTED;
 }

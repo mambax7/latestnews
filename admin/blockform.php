@@ -1,20 +1,14 @@
 <?php
 /**
- * Module: XoopsTube
- *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
  * which is considered copyrighted (c) material of the original comment or credit authors.
  *
- * PHP version 5
- *
  * @category        Module
- * @package         Xoopstube
- * @author          Fernando Santos (topet05), fernando@mastop.com.br
- * @copyright       Mastop InfoDigital (c) 2003-2007
- * @link            http://www.mastop.com.br
+ * @author          XOOPS Development Team
+ * @copyright       XOOPS Project
+ * @link            https://www.xoops.org
  * @license         GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
- * @since           1.0.6
  */
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 $form = new \XoopsThemeForm($block['form_title'], 'blockform', 'blocksadmin.php', 'post', true);
@@ -36,7 +30,7 @@ $side_select->addOptionArray([
 $form->addElement($side_select);
 $form->addElement(new \XoopsFormText(_AM_SYSTEM_BLOCKS_WEIGHT, 'bweight', 2, 5, $block['weight']));
 $form->addElement(new \XoopsFormRadioYN(_AM_SYSTEM_BLOCKS_VISIBLE, 'bvisible', $block['visible']));
-$mod_select = new \XoopsFormSelect(_AM_XTUBE_VISIBLEIN, 'bmodule', $block['modules'], 5, true);
+$mod_select = new \XoopsFormSelect(_AM_LATESTNEWS_VISIBLEIN, 'bmodule', $block['modules'], 5, true);
 /** @var \XoopsModuleHandler $moduleHandler */
 $moduleHandler = xoops_getHandler('module');
 $criteria      = new \CriteriaCompo(new \Criteria('hasmain', 1));
@@ -47,10 +41,10 @@ $module_list[0]  = _AM_SYSTEM_BLOCKS_ALLPAGES;
 ksort($module_list);
 $mod_select->addOptionArray($module_list);
 $form->addElement($mod_select);
-$form->addElement(new \XoopsFormText(_AM_TITLE, 'btitle', 50, 255, $block['title']), false);
+$form->addElement(new \XoopsFormText(_AM_SYSTEM_BLOCKS_TITLE, 'btitle', 50, 255, $block['title']), false);
 if ($block['is_custom']) {
     $textarea = new \XoopsFormDhtmlTextArea(_AM_SYSTEM_BLOCKS_CONTENT, 'bcontent', $block['content'], 15, 70);
-    $textarea->setDescription('<span style="font-size:x-small;font-weight:bold;">' . _AM_SYSTEM_BLOCKS_USEFULTAGS . '</span><br><span style="font-size:x-small;font-weight:normal;">' . sprintf(_AM_BLOCKTAG1, '{X_SITEURL}', XOOPS_URL . '/') . '</span>');
+    $textarea->setDescription('<span style="font-size:x-small;font-weight:bold;">' . _AM_SYSTEM_BLOCKS_USEFULTAGS . '</span><br><span style="font-size:x-small;font-weight:normal;">' . sprintf(_AM_LATESTNEWS_BLOCKTAG1, '{X_SITEURL}', XOOPS_URL . '/') . '</span>');
     $form->addElement($textarea, true);
     $ctype_select = new \XoopsFormSelect(_AM_SYSTEM_BLOCKS_CTYPE, 'bctype', $block['ctype']);
     $ctype_select->addOptionArray([
