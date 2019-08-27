@@ -68,7 +68,7 @@ if ('list' === $op) {
     echo "
     <h4 style='text-align:left;'>" . _AM_SYSTEM_BLOCKS_ADMIN . '</h4>';
     $moduleHandler = xoops_getHandler('module');
-    echo "<form action='" . $_SERVER['PHP_SELF'] . "' name='blockadmin' method='post'>";
+    echo "<form action='" . $_SERVER['SCRIPT_NAME'] . "' name='blockadmin' method='post'>";
     echo $GLOBALS['xoopsSecurity']->getTokenHTML();
     echo "<table width='100%' class='outer' cellpadding='4' cellspacing='1'>"
        . "<tr valign='middle'><th align='center'>"
@@ -229,7 +229,7 @@ if ('list' === $op) {
 
 if ('order' === $op) {
     if (!$GLOBALS['xoopsSecurity']->check()) {
-        redirect_header($_SERVER['PHP_SELF'], 3, implode('<br>', $GLOBALS['xoopsSecurity']->getErrors()));
+        redirect_header($_SERVER['SCRIPT_NAME'], 3, implode('<br>', $GLOBALS['xoopsSecurity']->getErrors()));
     }
     foreach (array_keys($bid) as $i) {
         if ($oldtitle[$i] != $title[$i] || $oldweight[$i] != $weight[$i] || $oldvisible[$i] != $visible[$i]
@@ -265,7 +265,7 @@ if ('order' === $op) {
             }
         }
     }
-    redirect_header($_SERVER['PHP_SELF'], 1, _AM_LATESTNEWS_UPDATE_SUCCESS);
+    redirect_header($_SERVER['SCRIPT_NAME'], 1, _AM_LATESTNEWS_UPDATE_SUCCESS);
 }
 if ('clone' === $op) {
     require_once __DIR__ . '/admin_header.php';
@@ -406,7 +406,7 @@ if ('edit_ok' === $op) {
             $xoopsDB->query($sql);
         }
     }
-    redirect_header($_SERVER['PHP_SELF'], 1, _AM_LATESTNEWS_UPDATE_SUCCESS);
+    redirect_header($_SERVER['SCRIPT_NAME'], 1, _AM_LATESTNEWS_UPDATE_SUCCESS);
 }
 
 if ('clone_ok' === $op) {
