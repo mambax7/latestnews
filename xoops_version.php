@@ -66,5 +66,5 @@ $modversion['blocks'][1]['can_clone'] = true;
 if (!empty($_POST['fct']) && !empty($_POST['op']) && !empty($_POST['diranme']) && 'modulesadmin' === $_POST['fct']
     && 'update_ok' === $_POST['op']
     && $_POST['dirname'] == $modversion['dirname']) {
-    require_once __DIR__ . '/include/onupdate.inc.php';
+    require __DIR__ . '/include/onupdate.inc.php';
 }

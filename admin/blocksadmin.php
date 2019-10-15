@@ -257,7 +257,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
     }
 
     /**
-     * @param $bid
+          * @param int               $bid
      */
     function cloneBlock($bid)
     {
@@ -308,7 +308,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
     }
 
     /**
-     * @param $bid
+          * @param int               $bid
      * @param $bside
      * @param $bweight
      * @param $bvisible
@@ -379,12 +379,12 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
     }
 
     /**
-     * @param $bid
-     * @param $title
-     * @param $weight
-     * @param $visible
-     * @param $side
-     * @param $bcachetime
+     * @param int               $bid
+     * @param string            $title
+     * @param int               $weight
+     * @param bool              $visible
+     * @param string            $side
+     * @param int               $bcachetime
      */
     function setOrder($bid, $title, $weight, $visible, $side, $bcachetime)
     {

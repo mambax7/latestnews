@@ -10,5 +10,5 @@ if ('' == $ref || 0 === mb_strpos($ref, XOOPS_URL . '/modules/system/admin.php')
     /* General part */
 
     // Keep the values of block's options when module is updated (by nobunobu)
-    require_once __DIR__ . '/updateblock.inc.php';
+    require __DIR__ . '/updateblock.inc.php';
 }
