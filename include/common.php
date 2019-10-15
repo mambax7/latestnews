@@ -60,15 +60,15 @@ $pathIcon32 = \Xmf\Module\Admin::iconUrl('', 32);
 //$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 
 $icons = [
-    'edit'    => "<img src='" . $pathIcon16 . "/edit.png'  alt=" . _EDIT . " title=" . _EDIT . " align='middle'>",
-    'delete'  => "<img src='" . $pathIcon16 . "/delete.png' alt='" . _DELETE . " title=" . _DELETE .  " align='middle'>",
-    'clone'   => "<img src='" . $pathIcon16 . "/editcopy.png' alt='" . _CLONE . " title=" . _CLONE .  " align='middle'>",
-    'preview' => "<img src='" . $pathIcon16 . "/view.png' alt='" . _PREVIEW . " title=" . _PREVIEW .  " align='middle'>",
-    'print'   => "<img src='" . $pathIcon16 . "/printer.png' alt='" . constant('CO_' . $moduleDirNameUpper . '_PRINT') . " title=" . constant('CO_' . $moduleDirNameUpper . '_PRINT') .  " align='middle'>",
-    'pdf'     => "<img src='" . $pathIcon16 . "/pdf.png' alt='" . constant('CO_' . $moduleDirNameUpper . '_PDF') . " title=" . constant('CO_' . $moduleDirNameUpper . '_PDF') .  " align='middle'>",
-    'add'     => "<img src='" . $pathIcon16 . "/add.png' alt='" . _ADD . " title=" . _ADD .  " align='middle'>",
-    '0'       => "<img src='" . $pathIcon16 . "/0.png' alt='" . 0 . " title=" . 0 .  " align='middle'>",
-    '1'       => "<img src='" . $pathIcon16 . "/1.png' alt='" . 1 . " title=" . 1 .  " align='middle'>",
+    'edit'    => "<img src='" . $pathIcon16 . "/edit.png'  alt=" . _EDIT . ' title=' . _EDIT . " align='middle'>",
+    'delete'  => "<img src='" . $pathIcon16 . "/delete.png' alt='" . _DELETE . ' title=' . _DELETE . " align='middle'>",
+    'clone'   => "<img src='" . $pathIcon16 . "/editcopy.png' alt='" . _CLONE . ' title=' . _CLONE . " align='middle'>",
+    'preview' => "<img src='" . $pathIcon16 . "/view.png' alt='" . _PREVIEW . ' title=' . _PREVIEW . " align='middle'>",
+    'print'   => "<img src='" . $pathIcon16 . "/printer.png' alt='" . constant('CO_' . $moduleDirNameUpper . '_PRINT') . ' title=' . constant('CO_' . $moduleDirNameUpper . '_PRINT') . " align='middle'>",
+    'pdf'     => "<img src='" . $pathIcon16 . "/pdf.png' alt='" . constant('CO_' . $moduleDirNameUpper . '_PDF') . ' title=' . constant('CO_' . $moduleDirNameUpper . '_PDF') . " align='middle'>",
+    'add'     => "<img src='" . $pathIcon16 . "/add.png' alt='" . _ADD . ' title=' . _ADD . " align='middle'>",
+    '0'       => "<img src='" . $pathIcon16 . "/0.png' alt='" . 0 . ' title=' . 0 . " align='middle'>",
+    '1'       => "<img src='" . $pathIcon16 . "/1.png' alt='" . 1 . ' title=' . 1 . " align='middle'>",
 ];
 
 $debug = false;

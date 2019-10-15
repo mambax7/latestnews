@@ -231,9 +231,9 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             // Actions
 
             echo "<td class='$class' align='center'><a href='blocksadmin.php?op=edit&amp;bid=" . $i->getVar('bid') . "'>" . $icons['edit'] . "</a> 
-            <a href='blocksadmin.php?op=clone&amp;bid=" . $i->getVar('bid') . "'>" . $icons['clone'] . "</a>";
+            <a href='blocksadmin.php?op=clone&amp;bid=" . $i->getVar('bid') . "'>" . $icons['clone'] . '</a>';
             if ('S' !== $i->getVar('block_type') && 'M' !== $i->getVar('block_type')) {
-                echo "&nbsp;<a href='" . XOOPS_URL . '/modules/system/admin.php?fct=blocksadmin&amp;op=delete&amp;bid=' . $i->getVar('bid') . "'>" . $icons['delete'] . "</a>";
+                echo "&nbsp;<a href='" . XOOPS_URL . '/modules/system/admin.php?fct=blocksadmin&amp;op=delete&amp;bid=' . $i->getVar('bid') . "'>" . $icons['delete'] . '</a>';
             }
             echo "
             <input type='hidden' name='oldtitle[" . $i->getVar('bid') . "]' value='" . $i->getVar('title') . "'>
