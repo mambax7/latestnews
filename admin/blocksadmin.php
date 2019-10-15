@@ -397,6 +397,9 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         $myblock->store();
     }
 
+    /**
+     * @param $bid
+     */
     function editBlock($bid)
     {
         require_once __DIR__ . '/admin_header.php';
@@ -445,6 +448,17 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         exit();
     }
 
+    /**
+     * @param $bid
+     * @param $btitle
+     * @param $bside
+     * @param $bweight
+     * @param $bvisible
+     * @param $bcachetime
+     * @param $bmodule
+     * @param $boptions
+     * @param $groups
+     */
     function updateBlock($bid, $btitle, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $boptions, $groups)
     {
         $myblock = new \XoopsBlock($bid);

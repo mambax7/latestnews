@@ -400,6 +400,19 @@ if ('clone_ok' === $op) {
 }
 
 // import from modules/system/admin/blocksadmin/blocksadmin.php
+/**
+ * @param       $bid
+ * @param       $bside
+ * @param       $bweight
+ * @param       $bvisible
+ * @param       $btitle
+ * @param       $bcontent
+ * @param       $bctype
+ * @param       $bcachetime
+ * @param       $bmodule
+ * @param array $options
+ * @return string
+ */
 function myblocksadmin_update_block(
     $bid,
     $bside,
@@ -491,6 +504,20 @@ function myblocksadmin_update_block(
 }
 
 // update block instance for 2.2
+/**
+ * @param       $id
+ * @param       $bside
+ * @param       $bweight
+ * @param       $bvisible
+ * @param       $btitle
+ * @param       $bcontent
+ * @param       $bctype
+ * @param       $bcachetime
+ * @param       $bmodule
+ * @param array $options
+ * @param null  $bid
+ * @return string
+ */
 function myblocksadmin_update_blockinstance(
     $id,
     $bside,

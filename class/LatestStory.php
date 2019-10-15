@@ -18,8 +18,16 @@ namespace XoopsModules\Latestnews;
 use XoopsModules\Latestnews;
 use XoopsModules\News;
 
+/**
+ * Class LatestStory
+ * @package XoopsModules\Latestnews
+ */
 class LatestStory extends News\NewsStory
 {
+    /**
+     * LatestStory constructor.
+     * @param int $id
+     */
     public function __construct($id = -1)
     {
         parent::__construct($id);
@@ -237,6 +245,9 @@ class LatestStory extends News\NewsStory
         return $story;
     }
 
+    /**
+     * @return bool
+     */
     public function latest_news_is_admin_group()
     {
         global $xoopsUser;

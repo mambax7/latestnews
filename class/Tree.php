@@ -42,6 +42,12 @@ class Tree
 
     //constructor of class XoopsTree
     //sets the names of table, unique id, and parend id
+    /**
+     * Tree constructor.
+     * @param $table_name
+     * @param $id_name
+     * @param $pid_name
+     */
     public function __construct($table_name, $id_name, $pid_name)
     {
         //        $GLOBALS['xoopsLogger']->addDeprecated("Class '" . __CLASS__ . "' is deprecated, check 'XoopsObjectTree' in tree.php");
@@ -52,6 +58,12 @@ class Tree
     }
 
     // returns an array of first child objects for a given id($sel_id)
+
+    /**
+     * @param        $sel_id
+     * @param string $order
+     * @return array
+     */
     public function getFirstChild($sel_id, $order = '')
     {
         $sel_id = (int)$sel_id;
@@ -73,6 +85,11 @@ class Tree
     }
 
     // returns an array of all FIRST child ids of a given id($sel_id)
+
+    /**
+     * @param $sel_id
+     * @return array
+     */
     public function getFirstChildId($sel_id)
     {
         $sel_id  = (int)$sel_id;
@@ -90,6 +107,13 @@ class Tree
     }
 
     //returns an array of ALL child ids for a given id($sel_id)
+
+    /**
+     * @param        $sel_id
+     * @param string $order
+     * @param array  $idarray
+     * @return array
+     */
     public function getAllChildId($sel_id, $order = '', $idarray = [])
     {
         $sel_id = (int)$sel_id;
@@ -111,6 +135,13 @@ class Tree
     }
 
     //returns an array of ALL parent ids for a given id($sel_id)
+
+    /**
+     * @param        $sel_id
+     * @param string $order
+     * @param array  $idarray
+     * @return array
+     */
     public function getAllParentId($sel_id, $order = '', $idarray = [])
     {
         $sel_id = (int)$sel_id;
@@ -131,6 +162,12 @@ class Tree
 
     //generates path from the root id to a given id($sel_id)
     // the path is delimetered with "/"
+    /**
+     * @param        $sel_id
+     * @param        $title
+     * @param string $path
+     * @return string
+     */
     public function getPathFromId($sel_id, $title, $path = '')
     {
         $sel_id = (int)$sel_id;
@@ -153,6 +190,14 @@ class Tree
     //makes a nicely ordered selection box
     //$preset_id is used to specify a preselected item
     //set $none to 1 to add a option with value 0
+    /**
+     * @param        $title
+     * @param string $order
+     * @param int    $preset_id
+     * @param int    $none
+     * @param string $sel_name
+     * @param string $onchange
+     */
     public function makeMySelBox($title, $order = '', $preset_id = 0, $none = 0, $sel_name = '', $onchange = '')
     {
         if ('' == $sel_name) {
@@ -194,6 +239,14 @@ class Tree
     }
 
     //generates nicely formatted linked path from the root id to a given id
+
+    /**
+     * @param        $sel_id
+     * @param        $title
+     * @param        $funcURL
+     * @param string $path
+     * @return string
+     */
     public function getNicePathFromId($sel_id, $title, $funcURL, $path = '')
     {
         $path   = !empty($path) ? '&nbsp;:&nbsp;' . $path : $path;
@@ -217,6 +270,11 @@ class Tree
 
     //generates id path from the root id to a given id
     // the path is delimetered with "/"
+    /**
+     * @param        $sel_id
+     * @param string $path
+     * @return string
+     */
     public function getIdPathFromId($sel_id, $path = '')
     {
         $sel_id = (int)$sel_id;

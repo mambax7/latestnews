@@ -15,6 +15,10 @@
 use XoopsModules\Latestnews;
 use XoopsModules\News;
 
+/**
+ * @param $options
+ * @return array
+ */
 function block_latestnews_show($options)
 {
     /** @var \XoopsModuleHandler $moduleHandler */
@@ -259,6 +263,10 @@ function block_latestnews_show($options)
     return $block;
 }
 
+/**
+ * @param $options
+ * @return string
+ */
 function b_latestnews_edit($options)
 {
     $mydir = basename(dirname(__DIR__));

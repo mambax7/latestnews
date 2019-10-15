@@ -12,6 +12,10 @@
 // # Free Software Foundation (http://www.gnu.org/)                     #
 // ######################################################################
 
+/**
+ * @param string $checkmodule
+ * @return bool
+ */
 function latestnews_checkmodule($checkmodule = 'news')
 {
     $retval = false;
@@ -26,6 +30,11 @@ function latestnews_checkmodule($checkmodule = 'news')
     return $retval;
 }
 
+/**
+ * @param $options
+ * @param $number
+ * @return string
+ */
 function latestnews_mk_chkbox($options, $number)
 {
     $chk = '';
@@ -42,6 +51,11 @@ function latestnews_mk_chkbox($options, $number)
     return $chkbox;
 }
 
+/**
+ * @param $options
+ * @param $number
+ * @return string
+ */
 function latestnews_mk_select($options, $number)
 {
     $slc = '';
