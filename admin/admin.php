@@ -65,7 +65,7 @@ if (0 != $admintest) {
                     //                  if (file_exists(XOOPS_ROOT_PATH."/modules/system/admin/".$fct."/main.php")) {
                     //                      require_once XOOPS_ROOT_PATH."/modules/system/admin/".$fct."/main.php"; GIJ
                     if (file_exists("../include/{$fct}.inc.php")) {
-                        require_once "../include/{$fct}.inc.php";
+                        require_once dirname(__DIR__) . "/include/{$fct}.inc.php";
                     } else {
                         $error = true;
                     }
