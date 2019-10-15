@@ -57,7 +57,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         echo "
         <h4 style='text-align:left;'>" . _AM_SYSTEM_BLOCKS_ADMIN . '</h4>';
         $moduleHandler = xoops_getHandler('module');
-        echo "<form action='" . $_SERVER['PHP_SELF'] . "' name='blockadmin' method='post'>";
+        echo "<form action='" . $_SERVER['SCRIPT_NAME'] . "' name='blockadmin' method='post'>";
         echo $GLOBALS['xoopsSecurity']->getTokenHTML();
         echo "<table width='100%' class='outer' cellpadding='4' cellspacing='1'>
         <tr valign='middle'><th align='center'>"
