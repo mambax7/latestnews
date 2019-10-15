@@ -140,11 +140,10 @@ class LatestStory extends News\NewsStory
         $story['author_uid']  = $this->uid();
         if (false !== $story['poster']) {
             $story['poster'] = "<a href='" . XOOPS_URL . '/userinfo.php?uid=' . $this->uid() . "'>" . $story['poster'] . '</a>';
-        } else {
-            if (3 != $helper->getConfig('displayname')) {
-                $story['poster'] = $xoopsConfig['anonymous'];
-            }
+        } elseif (3 != $helper->getConfig('displayname')) {
+            $story['poster'] = $xoopsConfig['anonymous'];
         }
+
         if ('' !== $helper->getConfig('ratenews')) {
             $story['rating'] = number_format($this->rating(), 2);
             if (1 == $this->votes) {
